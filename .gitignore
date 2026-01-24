@@ -1,0 +1,13 @@
+# Exclude backend server (deployed separately on Render)
+server/
+
+# System files
+.DS_Store
+Thumbs.db
+*.log
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo

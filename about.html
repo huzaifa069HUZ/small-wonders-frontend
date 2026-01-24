@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Small Wonders Kids School - Patna</title>
+    <meta name="description"
+        content="Learn about Small Wonders Kids School in Patna. Established in 2010, we provide a holistic environment with expert mentors and modern facilities for your child.">
+    <meta name="keywords"
+        content="About Small Wonders Patna, Kids School History Patna, Best Preschool in Phulwari Sharif, Holistic Child Development Patna">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://swskpt.in/about.html">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://swskpt.in/about.html">
+    <meta property="og:title" content="About Us | Small Wonders Kids School - Patna">
+    <meta property="og:description"
+        content="Nurturing curiosity and excellence in early childhood education in Patna since 2010.">
+    <meta property="og:image" content="https://swskpt.in/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://swskpt.in/about.html">
+    <meta property="twitter:title" content="About Us | Small Wonders Kids School">
+    <meta property="twitter:description"
+        content="Nurturing curiosity and excellence in early childhood education in Patna since 2010.">
+    <meta property="twitter:image" content="https://swskpt.in/logo.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Preschool",
+      "name": "Small Wonders Kids School",
+      "alternateName": ["Small Wonders School", "Small Wonders School Patna", "SWS Patna", "swskpt"],
+      "image": "https://swskpt.in/logo.png",
+      "logo": "https://swskpt.in/logo.png",
+      "@id": "https://swskpt.in",
+      "url": "https://swskpt.in",
+      "telephone": "",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "near छोटी मस्जिद, Sector 2, Haroon Nagar, Haroon Colony Sector -II, Phulwari Sharif",
+        "addressLocality": "Patna",
+        "addressRegion": "Bihar",
+        "postalCode": "800002",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 25.5870014,
+        "longitude": 85.0880679
+      }
+    }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&family=Satisfy&display=swap"
+        rel="stylesheet">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'nunito': ['Nunito', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                        'cursive': ['Satisfy', 'cursive'],
+                    },
+                    colors: {
+                        'brand-blue': '#00D1FF',
+                        'brand-yellow': '#FFD700',
+                        'brand-pink': '#FF2D85',
+                        'brand-teal': '#00F5D4',
+                        'brand-light-bg': '#F8F9FA',
+                        'brand-dark-text': '#1e293b',
+                        'navy': '#0A2540',
+                        'royal': '#2563EB',
+                        'gold': '#F4B400',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(10deg)' },
+                            '100%': { transform: 'translateY(0px) rotate(0deg)' },
+                        },
+                        liquidFill: {
+                            '0%': { backgroundPosition: '0% 0%' },
+                            '100%': { backgroundPosition: '0% 100%' }
+                        }
+                    },
+                    animation: {
+                        fadeInUp: 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        float: 'float 8s ease-in-out infinite',
+                        liquidFill: 'liquidFill 5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .reveal {
+            position: relative;
+            transform: translateY(60px);
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+
+        /* Dynamic Island Header Transition */
+        #header-container {
+            top: 0;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
+        }
+
+        .header-scrolled {
+            top: 1rem !important;
+            width: fit-content !important;
+            min-width: 300px;
+            left: 50% !important;
+            transform: translateX(-50%);
+            border-radius: 9999px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(203, 213, 225, 0.85) 100%);
+            backdrop-filter: blur(24px);
+            box-shadow: 0 25px 50px -12px rgba(10, 37, 64, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 0 2.5rem;
+        }
+
+        .header-scrolled #header-inner {
+            height: 4.5rem !important;
+            justify-content: center !important;
+        }
+
+        .original-logo {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            opacity: 1;
+            transform: translateX(0);
+            display: flex;
+        }
+
+        .header-scrolled .original-logo {
+            opacity: 0;
+            transform: translateX(-20px);
+            pointer-events: none;
+            display: none;
+        }
+
+        .header-scrolled nav,
+        .header-scrolled #mobile-menu-button {
+            display: none !important;
+        }
+
+        @keyframes colorFill {
+            0% {
+                background-position: 100% 0;
+                filter: drop-shadow(0 0 0 rgba(203, 213, 225, 0));
+            }
+
+            100% {
+                background-position: 0% 0;
+                filter: drop-shadow(0 0 8px rgba(0, 209, 255, 0.8)) drop-shadow(0 0 15px rgba(0, 209, 255, 0.4));
+            }
+        }
+
+        .magic-logo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, 40%) scale(0.8);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-family: 'Satisfy', cursive;
+            font-weight: 400;
+            font-size: 2rem;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            pointer-events: none;
+            background: linear-gradient(90deg, #0A2540 0%, #00D1FF 20%, #FFD700 35%, #0A2540 50%, #cbd5e1 50.1%, #cbd5e1 100%);
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-scrolled .magic-logo {
+            opacity: 1;
+            position: relative;
+            left: auto;
+            top: auto;
+            transform: scale(1);
+            pointer-events: auto;
+            animation: colorFill 3s ease-in-out infinite alternate;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1.25rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #00D1FF;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 15px;
+        }
+
+        /* Footer Link Hover */
+        .footer-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link i {
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            width: 0;
+        }
+
+        .footer-link:hover {
+            padding-left: 4px;
+            color: #FFD700 !important;
+        }
+
+        .footer-link:hover i {
+            opacity: 1;
+            transform: translateX(4px);
+            width: 14px;
+            margin-right: 8px;
+        }
+
+        /* Glass Card Utility */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body class="font-poppins bg-brand-light-bg text-brand-dark-text overflow-x-hidden">
+
+    <!-- Premium Floating Header -->
+    <header id="header-container" class="fixed z-50">
+        <div id="header-inner"
+            class="w-full px-6 md:px-16 h-20 md:h-28 flex items-center justify-between transition-all duration-500 relative">
+
+            <!-- Logo area (Fades out on scroll) -->
+            <a href="index.html"
+                class="original-logo flex items-center gap-3 hover:scale-105 transition-all duration-300">
+                <img src="logo.png" alt="Small Wonders Logo" class="w-12 h-12 object-contain rounded-full">
+                <div class="flex flex-col leading-none">
+                    <span
+                        class="text-xl md:text-2xl font-black font-nunito tracking-tighter uppercase text-brand-dark-text">
+                        Small<span class="text-brand-blue">Wonders</span>
+                    </span>
+                    <span class="text-[8px] font-bold tracking-[0.5em] text-gray-400 uppercase">School for Kids</span>
+                </div>
+            </a>
+
+            <!-- Magic Center Logo (Satisfy Font + Color Fill Animation) -->
+            <a href="index.html" class="magic-logo">
+                Small Wonders
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav
+                class="hidden lg:flex items-center bg-white/30 backdrop-blur-sm rounded-full px-2 py-1.5 border border-white/20 shadow-sm transition-all duration-500">
+                <a href="index.html"
+                    class="nav-link text-xs font-bold text-gray-600 hover:text-brand-blue uppercase tracking-widest transition-colors">Home</a>
+                <a href="about.html"
+                    class="nav-link text-xs font-bold text-brand-blue uppercase tracking-widest transition-colors">About</a>
+                <a href="courses.html"
+                    class="nav-link text-xs font-bold text-gray-600 hover:text-brand-blue uppercase tracking-widest transition-colors">Academics</a>
+                <a href="gallery.html"
+                    class="nav-link text-xs font-bold text-gray-600 hover:text-brand-blue uppercase tracking-widest transition-colors">Gallery</a>
+                <a href="inquiry/admission.html"
+                    class="ml-4 bg-navy text-white text-[10px] font-black px-7 py-3.5 rounded-full hover:bg-brand-blue transition-all uppercase tracking-[0.2em] shadow-lg shadow-navy/10">Admissions</a>
+            </nav>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-button"
+                class="lg:hidden p-3 rounded-full bg-white shadow-sm border border-gray-100">
+                <i data-lucide="menu" class="h-5 w-5 text-navy"></i>
+            </button>
+        </div>
+
+        <!-- Premium Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="lg:hidden fixed inset-0 z-[60] bg-navy/98 backdrop-blur-3xl transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)] flex flex-col justify-center items-center">
+
+            <!-- Close Button -->
+            <button id="close-menu-btn"
+                class="absolute top-8 right-8 p-4 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all group">
+                <i data-lucide="x" class="w-8 h-8 group-hover:rotate-90 transition-transform duration-300"></i>
+            </button>
+
+            <!-- Background Decor -->
+            <div class="absolute top-0 left-0 w-80 h-80 bg-brand-blue/20 rounded-full blur-[100px] pointer-events-none">
+            </div>
+            <div
+                class="absolute bottom-0 right-0 w-80 h-80 bg-brand-pink/20 rounded-full blur-[100px] pointer-events-none">
+            </div>
+
+            <!-- Menu Links -->
+            <nav class="flex flex-col items-center space-y-10 text-center z-10">
+                <a href="index.html"
+                    class="mobile-link text-5xl font-playfair font-black text-white hover:text-brand-yellow transition-all duration-300 hover:scale-110 block"
+                    onclick="toggleMenu()">Home</a>
+                <a href="about.html"
+                    class="mobile-link text-5xl font-playfair font-black text-white hover:text-brand-blue transition-all duration-300 hover:scale-110 block"
+                    onclick="toggleMenu()">About</a>
+                <a href="courses.html"
+                    class="mobile-link text-5xl font-playfair font-black text-white hover:text-brand-pink transition-all duration-300 hover:scale-110 block"
+                    onclick="toggleMenu()">Academics</a>
+                <a href="gallery.html"
+                    class="mobile-link text-5xl font-playfair font-black text-white hover:text-brand-yellow transition-all duration-300 hover:scale-110 block"
+                    onclick="toggleMenu()">Gallery</a>
+                <a href="inquiry/admission.html"
+                    class="mt-8 bg-white text-navy font-black text-sm px-10 py-5 rounded-full hover:bg-brand-blue hover:text-white transition-all uppercase tracking-widest shadow-2xl block"
+                    onclick="toggleMenu()">
+                    Admissions
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-32">
+        <!-- Banner Image Section (Nano Banana Style) -->
+        <section class="relative w-full px-6 mb-20 reveal active">
+            <div class="max-w-7xl mx-auto rounded-[3rem] overflow-hidden shadow-2xl relative group">
+                <img src="public/nano_banana_banner.png" alt="Creative Learning"
+                    class="w-full h-[300px] md:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105">
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-navy/60 to-transparent flex items-center p-12 md:p-20">
+                    <div class="text-white max-w-2xl">
+
+                        <h1 class="text-4xl md:text-6xl font-playfair font-black leading-tight mb-6">
+                            Nurturing <br />
+                            <span class="text-brand-blue">Brilliant Minds</span>
+                        </h1>
+                        <p class="text-white/80 text-lg font-medium max-w-lg leading-relaxed">
+                            A modern sanctuary for curiosity, where every child’s potential is unlocked through
+                            innovative learning.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Core Section -->
+        <section class="px-6 pb-24 relative overflow-hidden">
+            <!-- Background Decor -->
+            <div
+                class="absolute top-20 left-[-5%] w-[300px] h-[300px] bg-brand-pink/10 rounded-full blur-[80px] -z-10 animate-float">
+            </div>
+            <div class="absolute bottom-20 right-[-5%] w-[300px] h-[300px] bg-brand-teal/10 rounded-full blur-[80px] -z-10 animate-float"
+                style="animation-delay: 2s;"></div>
+
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center reveal">
+                <div class="space-y-8">
+                    <h2 class="text-3xl md:text-5xl font-playfair font-black text-navy relative inline-block">
+                        Why Choose Us?
+                        <svg class="absolute -bottom-2 left-0 w-full h-3 text-brand-yellow" viewBox="0 0 100 10"
+                            preserveAspectRatio="none">
+                            <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="none" />
+                        </svg>
+                    </h2>
+
+                    <div class="space-y-6">
+                        <!-- Feature 1 -->
+                        <div
+                            class="group relative p-6 rounded-[2rem] bg-white shadow-xl hover:-translate-y-2 transition-all duration-300 border border-slate-100">
+                            <div class="flex items-start gap-6">
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-brand-orange/10 flex items-center justify-center text-brand-orange group-hover:scale-110 transition-transform">
+                                    <i data-lucide="graduation-cap" class="w-7 h-7"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-navy mb-2">Best Kids School in Patna</h4>
+                                    <p class="text-slate-500 text-sm leading-relaxed">Recognized for excellence in early
+                                        childhood education and holistic development.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div
+                            class="group relative p-6 rounded-[2rem] bg-white shadow-xl hover:-translate-y-2 transition-all duration-300 border border-slate-100">
+                            <div class="flex items-start gap-6">
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-brand-teal/10 flex items-center justify-center text-brand-teal group-hover:scale-110 transition-transform">
+                                    <i data-lucide="palette" class="w-7 h-7"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-navy mb-2">Full of Activities</h4>
+                                    <p class="text-slate-500 text-sm leading-relaxed">Engaging daily programs including
+                                        arts, sports, and sensory play.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div
+                            class="group relative p-6 rounded-[2rem] bg-white shadow-xl hover:-translate-y-2 transition-all duration-300 border border-slate-100">
+                            <div class="flex items-start gap-6">
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-brand-pink/10 flex items-center justify-center text-brand-pink group-hover:scale-110 transition-transform">
+                                    <i data-lucide="utensils" class="w-7 h-7"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-navy mb-2">Practical Skill Mastery</h4>
+                                    <p class="text-slate-500 text-sm leading-relaxed">Students master skills with
+                                        practical knowledge through hands-on learning.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Grid Images -->
+                <div class="grid grid-cols-2 gap-4 h-[600px]">
+                    <!-- Tall Image -->
+                    <div class="col-span-1 row-span-2 rounded-[2.5rem] overflow-hidden relative group shadow-2xl">
+                        <img src="public/activity2.webp"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            alt="Students">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h3 class="text-2xl font-playfair font-bold">Inspired Play</h3>
+                        </div>
+                    </div>
+                    <!-- Small Top -->
+                    <div
+                        class="col-span-1 row-span-1 rounded-[2.5rem] bg-brand-yellow relative overflow-hidden flex items-center justify-center group shadow-xl">
+                        <div class="text-center p-6">
+                            <i data-lucide="brain-circuit" class="w-12 h-12 text-navy mb-2 mx-auto"></i>
+                            <h3 class="text-navy font-bold text-lg">Creative Thinking</h3>
+                        </div>
+                    </div>
+                    <!-- Small Bottom -->
+                    <div
+                        class="col-span-1 row-span-1 rounded-[2.5rem] bg-navy relative overflow-hidden flex items-center justify-center shadow-xl group">
+                        <div class="text-center">
+                            <span class="text-brand-blue text-4xl font-black block">12:1</span>
+                            <span class="text-white/60 text-[10px] font-black uppercase tracking-widest">Student
+                                Ratio</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Heart & Soul Section -->
+        <section class="px-6 pb-24 reveal">
+            <div class="max-w-7xl mx-auto bg-navy rounded-[3rem] p-12 md:p-20 relative overflow-hidden text-white">
+                <!-- Decor -->
+                <div class="absolute top-[-50px] right-[-50px] w-64 h-64 bg-brand-blue/20 rounded-full blur-[60px]">
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
+                    <div>
+                        <h3 class="text-brand-yellow font-black tracking-[0.3em] uppercase text-xs mb-6">Our Heart &
+                            Soul</h3>
+                        <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-8 leading-tight">15+ Years of
+                            <br /><span class="text-brand-blue italic">Excellence</span>
+                        </h2>
+                        <p class="text-white/70 text-lg leading-relaxed mb-8">
+                            Founded with a vision to redefine early education. We don't just teach; we inspire children
+                            to become the best versions of themselves through a curriculum that values empathy as much
+                            as excellence.
+                        </p>
+                        <a href="inquiry/admission.html"
+                            class="inline-flex items-center gap-3 bg-brand-blue text-white px-8 py-4 rounded-full font-bold uppercase text-[11px] tracking-widest hover:bg-white hover:text-navy transition-all duration-300">
+                            Apply for Admission <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                    <div class="relative">
+                        <div
+                            class="aspect-square rounded-[2rem] overflow-hidden border-4 border-white/10 shadow-2xl rotate-3 hover:rotate-0 transition-all duration-500">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmjwgMt98livqibm3SmE1Pr7JPV1Qp6hWjb7g0LJdI8YYFsMI3wF6ulmndlBIuCBi6lWxzdcE39HBP53gDNBzb3Nongt5HYiQDD7Nc_Velhu-zLuoOIcEJlpn1uJIMnOwxQT33NcS5_HujQB37CVZH-E5xz5bsqPrnig25pGdPWSo5XmPgcD3U9dCTlxi2_U9JHXxycyURZ9nEtf7QrH20wKFBZXkI7ubvMFbRutGzPDmH8Fn7tTDzfZrXyVpjRSgDw_g2nmZELHg"
+                                class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Professional Navy Footer -->
+    <footer class="bg-navy text-white pt-32 pb-16 px-8 relative overflow-hidden font-poppins">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-blue/5 rounded-full blur-[100px]"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10 text-left">
+            <div class="grid lg:grid-cols-12 gap-16 mb-24">
+                <div class="lg:col-span-5 reveal">
+                    <div class="flex flex-col mb-10">
+                        <div class="flex items-center gap-4 mb-4">
+                            <img src="logo.png" alt="Small Wonders Logo" class="w-16 h-16 object-contain rounded-full">
+                            <div class="flex flex-col leading-none">
+                                <span
+                                    class="text-3xl font-playfair font-black tracking-tighter uppercase text-white">Small<span
+                                        class="text-brand-blue">Wonders</span></span>
+                                <span
+                                    class="text-[10px] font-black tracking-[0.5em] text-brand-yellow uppercase mt-1">SCHOOL
+                                    FOR KIDS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-white/40 text-sm leading-relaxed mb-10 font-medium max-w-sm text-left">
+                        Nurturing
+                        curiosity and excellence in early childhood education. Dedicated to building global
+                        citizens
+                        since inception.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/small_wonders_school_for_kids?igsh=MTJmeGE4ZWJtMXBtdQ=="
+                            class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gradient-to-tr hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#FCB045] hover:text-white hover:border-transparent transition-all duration-300 group">
+                            <i data-lucide="instagram" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/16pkk2W8Qv/?mibextid=wwXIfr"
+                            class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#1877F2] hover:text-white hover:border-transparent transition-all duration-300 group">
+                            <i data-lucide="facebook" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3 reveal" style="transition-delay: 0.2s">
+                    <h4 class="font-playfair text-lg font-bold text-brand-yellow mb-10">Exploration</h4>
+                    <ul class="space-y-6">
+                        <li><a href="index.html"
+                                class="footer-link text-xs text-white/50 font-bold uppercase tracking-widest"><i
+                                    data-lucide="arrow-right"></i>Home</a></li>
+                        <li><a href="about.html"
+                                class="footer-link text-xs text-white/50 font-bold uppercase tracking-widest"><i
+                                    data-lucide="arrow-right"></i>About Us</a></li>
+                        <li><a href="courses.html"
+                                class="footer-link text-xs text-white/50 font-bold uppercase tracking-widest"><i
+                                    data-lucide="arrow-right"></i>Curriculum</a></li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-4 reveal" style="transition-delay: 0.4s">
+                    <h4 class="font-playfair text-lg font-bold text-brand-yellow mb-10">Connect</h4>
+                    <ul class="space-y-8">
+                        <li class="flex items-center space-x-4 text-white/60"><i data-lucide="mail"
+                                class="w-5 h-5 text-brand-blue"></i><span
+                                class="text-sm font-bold">swskpt@gmail.com</span></li>
+                        <li class="flex items-start space-x-4 text-white/60"><i data-lucide="map-pin"
+                                class="w-5 h-5 text-brand-blue"></i><span class="text-sm font-bold leading-relaxed">near
+                                छोटी मस्जिद, Sector 2, Haroon
+                                Nagar,<br>Haroon Colony Sector -II, Phulwari Sharif,<br>Patna, Bihar
+                                800002</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Map Integration -->
+            <div
+                class="w-full h-64 rounded-[2rem] overflow-hidden border-4 border-white/10 shadow-2xl relative group mb-16 reveal">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d57576.62322258748!2d85.0880679!3d25.5870014!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed57ae52d4f803%3A0xa16990621a880617!2sSmall%20Wonders%20School%20For%20Kids!5e0!3m2!1sen!2sin!4v1769266422287!5m2!1sen!2sin"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" class="transition-all duration-500">
+                </iframe>
+            </div>
+
+            <div
+                class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-[10px] font-black tracking-[0.3em] text-white/20 uppercase">
+                <p>&copy; 2026 Small Wonders School. Premium Early Education.</p>
+                <div class="flex space-x-10">
+                    <a href="#" class="hover:text-brand-yellow transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand-yellow transition-colors">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // High-end Floating Island Header Logic
+        const header = document.getElementById('header-container');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-menu-btn');
+
+        function toggleMenu() {
+            menu.classList.toggle('translate-x-full');
+            // Lock body scroll when menu is open
+            if (!menu.classList.contains('translate-x-full')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
+        if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
+
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

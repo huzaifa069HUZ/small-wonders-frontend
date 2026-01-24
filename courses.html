@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum & Activities | Small Wonders Kids School - Patna</title>
+    <meta name="description"
+        content="Explore our age-appropriate curriculum from Playgroup to Grade 6. Focused on practical skills, arts, and academic excellence at Small Wonders Kids School, Patna.">
+    <meta name="keywords"
+        content="Small Wonders Curriculum, Patna School Syllabus, Activity Based Learning Patna, Playgroup to Grade 6 Patna, Kids Activities Bihar">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://swskpt.in/courses.html">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://swskpt.in/courses.html">
+    <meta property="og:title" content="Curriculum | Small Wonders Kids School - Patna">
+    <meta property="og:description"
+        content="A curriculum designed to evolve with your child. From sensory play in Playgroup to critical thinking in Grade 6.">
+    <meta property="og:image" content="https://swskpt.in/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://swskpt.in/courses.html">
+    <meta property="twitter:title" content="Curriculum | Small Wonders Kids School">
+    <meta property="twitter:description"
+        content="A curriculum designed to evolve with your child. From sensory play in Playgroup to critical thinking in Grade 6.">
+    <meta property="twitter:image" content="https://swskpt.in/logo.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Small Wonders Kids School Curriculum",
+      "description": "Comprehensive curriculum for Playgroup to Grade 6",
+      "provider": {
+        "@type": "Preschool",
+        "name": "Small Wonders Kids School",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Patna",
+            "addressRegion": "Bihar"
+        }
+      }
+    }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&family=Satisfy&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'nunito': ['Nunito', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                        'cursive': ['Satisfy', 'cursive'],
+                    },
+                    colors: {
+                        'brand-blue': '#00D1FF',
+                        'brand-yellow': '#FFD700',
+                        'brand-pink': '#FF2D85',
+                        'brand-teal': '#00F5D4',
+                        'brand-purple': '#D946EF',
+                        'brand-light-bg': '#F8F9FA',
+                        'brand-dark-text': '#1e293b',
+                        'navy': '#0A2540',
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'float-delayed': 'float 8s ease-in-out 4s infinite',
+                        'pulse-slow': 'pulse 6s infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Shared Styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glass Cards - Vibrant Update */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            isolation: isolate;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #FF2D85, #FFD700, #00D1FF, #00F5D4);
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .glass-card:hover::before {
+            opacity: 0.5;
+        }
+
+        /* Abstract Backgrounds */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+        }
+
+
+
+        .header-scrolled {
+            top: 1rem !important;
+            width: fit-content !important;
+            min-width: 300px;
+            left: 50% !important;
+            transform: translateX(-50%);
+            border-radius: 9999px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(203, 213, 225, 0.85) 100%);
+            backdrop-filter: blur(24px);
+            box-shadow: 0 25px 50px -12px rgba(10, 37, 64, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 0 2.5rem;
+        }
+
+        .header-scrolled #header-inner {
+            height: 4.5rem !important;
+            justify-content: center !important;
+        }
+
+        .original-logo {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .header-scrolled .original-logo {
+            opacity: 0;
+            transform: translateX(-20px);
+            pointer-events: none;
+            display: none;
+        }
+
+        .header-scrolled nav,
+        .header-scrolled #mobile-menu-button {
+            display: none !important;
+        }
+
+        .magic-logo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, 40%) scale(0.8);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-family: 'Satisfy', cursive;
+            font-size: 2rem;
+            color: #0A2540;
+            pointer-events: none;
+        }
+
+        .header-scrolled .magic-logo {
+            opacity: 1;
+            position: relative;
+            left: auto;
+            top: auto;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        /* Floating Admission Button & Beam */
+        .admission-float {
+            position: fixed;
+            bottom: 45px;
+            right: 40px;
+            z-index: 99;
+            background-color: #FFD700;
+            color: #0A2540;
+            font-weight: 900;
+            font-size: 11px;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .admission-float::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: conic-gradient(from 0deg, transparent 0 340deg, #d946ef 360deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+            animation: rotateBeam 4s linear infinite;
+            z-index: -2;
+        }
+
+        .admission-float::after {
+            content: "";
+            position: absolute;
+            inset: 2px;
+            background: #FFD700;
+            border-radius: 9999px;
+            z-index: -1;
+        }
+
+        .admission-float span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .admission-float:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        .admission-float:hover::after {
+            background: #fff;
+        }
+
+        @keyframes rotateBeam {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .session-text {
+            position: fixed;
+            bottom: 95px;
+            right: 50px;
+            z-index: 99;
+            font-size: 10px;
+            font-weight: 800;
+            color: #0A2540;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 4px 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: bounceIn 1s ease-out 0.5s backwards;
+            pointer-events: none;
+            border: 1px solid rgba(10, 37, 64, 0.1);
+        }
+
+        .session-text::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 4px 4px 0;
+            border-style: solid;
+            border-color: rgba(255, 255, 255, 0.9) transparent transparent transparent;
+        }
+    </style>
+</head>
+
+<body class="font-poppins bg-slate-50 text-slate-800 overflow-x-hidden relative">
+    <!-- Vibrant Page Background -->
+    <div class="fixed inset-0 pointer-events-none -z-50 overflow-hidden">
+        <div
+            class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-blue/10 rounded-full blur-[120px] animate-pulse-slow">
+        </div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-purple/10 rounded-full blur-[120px] animate-pulse-slow"
+            style="animation-delay: 2s;"></div>
+        <div class="absolute top-[40%] left-[30%] w-[40%] h-[40%] bg-brand-yellow/10 rounded-full blur-[100px] animate-pulse-slow"
+            style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header-container" class="fixed z-50">
+        <div id="header-inner"
+            class="w-full px-6 md:px-16 h-20 md:h-28 flex items-center justify-between transition-all duration-500 relative">
+
+            <a href="index.html"
+                class="original-logo flex items-center gap-3 hover:scale-105 transition-all duration-300">
+                <img src="logo.png" alt="Small Wonders Logo" class="w-12 h-12 object-contain rounded-full">
+                <div class="flex flex-col leading-none">
+                    <span
+                        class="text-xl md:text-2xl font-black font-nunito tracking-tighter uppercase text-brand-dark-text">
+                        Small<span class="text-brand-blue">Wonders</span>
+                    </span>
+                    <span class="text-[8px] font-bold tracking-[0.5em] text-gray-400 uppercase">School for Kids</span>
+                </div>
+            </a>
+
+            <a href="index.html" class="magic-logo">Small Wonders</a>
+
+            <nav
+                class="hidden lg:flex items-center bg-white/30 backdrop-blur-sm rounded-full px-2 py-1.5 border border-white/20 shadow-sm transition-all duration-500">
+                <a href="index.html"
+                    class="nav-link text-xs font-bold text-gray-600 hover:text-brand-blue uppercase tracking-widest transition-colors px-5 py-2">Home</a>
+                <a href="courses.html"
+                    class="text-xs font-bold text-brand-blue uppercase tracking-widest transition-colors px-5 py-2">Academics</a>
+                <a href="gallery.html"
+                    class="nav-link text-xs font-bold text-gray-600 hover:text-brand-blue uppercase tracking-widest transition-colors px-5 py-2">Gallery</a>
+                <a href="inquiry/admission.html"
+                    class="ml-2 bg-navy text-white text-[10px] font-black px-7 py-3.5 rounded-full hover:bg-brand-blue transition-all uppercase tracking-[0.2em] shadow-lg shadow-navy/10">Admissions</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-40 pb-32 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-grid-pattern opacity-[0.3] pointer-events-none"></div>
+        <div
+            class="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-blue/5 rounded-full blur-[100px] -z-10 translate-x-1/3 -translate-y-1/4">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-yellow/10 rounded-full blur-[80px] -z-10 -translate-x-1/4 translate-y-1/4">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <span
+                class="inline-block py-2 px-6 rounded-full bg-white border border-slate-200 shadow-sm text-brand-purple font-black text-[10px] tracking-[0.3em] uppercase mb-8 animate-pulse-slow">
+                Academic Excellence
+            </span>
+
+            <h1 class="text-5xl md:text-8xl font-playfair font-black text-navy leading-[1.1] mb-8 reveal">
+                Building <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple">Future</span>
+                <br>
+                Pixel by Pixel.
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-lg text-slate-500 font-medium leading-relaxed mb-12 reveal"
+                style="transition-delay: 0.2s">
+                A curriculum designed to evolve with your child. From sensory play in Playgroup to critical thinking in
+                Grade 6.
+            </p>
+
+            <!-- Floating Micro Elements -->
+            <div class="absolute top-1/2 left-[10%] animate-float hidden md:block opacity-60">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="1.5">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="absolute top-[40%] right-[10%] animate-float-delayed hidden md:block opacity-60">
+                <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#FF2D85" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. The Foundational Years (Playgroup - Nursery) -->
+    <section class="py-24 px-6 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-8 items-end mb-16 px-4">
+                <div class="reveal">
+                    <h2
+                        class="text-6xl font-playfair font-black text-navy/10 absolute -top-16 -left-4 select-none pointer-events-none">
+                        01</h2>
+                    <h3 class="text-3xl md:text-4xl font-playfair font-black text-navy">Foundational Years</h3>
+                    <p class="text-brand-pink font-bold uppercase tracking-widest text-xs mt-2">Ages 1.5 - 3.5 Years</p>
+                </div>
+                <div class="h-px bg-slate-200 flex-1 mb-4 hidden md:block"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Playgroup -->
+                <div class="glass-card rounded-[3rem] p-10 relative overflow-hidden group reveal">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-brand-pink/10 rounded-bl-[100px] transition-all group-hover:scale-150">
+                    </div>
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-brand-pink/10 flex items-center justify-center text-brand-pink mb-8 group-hover:rotate-12 transition-transform">
+                        <i data-lucide="baby" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-navy mb-4">Playgroup</h4>
+                    <p class="text-slate-500 mb-8 leading-relaxed">
+                        A gentle introduction to specific structured activities. We focus on sensory integration, motor
+                        skills, and social comfort.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-600">
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-pink"></span> Sensory Play
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-600">
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-pink"></span> Music & Rhythm
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Nursery -->
+                <div class="glass-card rounded-[3rem] p-10 relative overflow-hidden group reveal"
+                    style="transition-delay: 0.2s">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-brand-blue/10 rounded-bl-[100px] transition-all group-hover:scale-150">
+                    </div>
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-brand-blue/10 flex items-center justify-center text-brand-blue mb-8 group-hover:rotate-12 transition-transform">
+                        <i data-lucide="blocks" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-navy mb-4">Nursery</h4>
+                    <p class="text-slate-500 mb-8 leading-relaxed">
+                        Curiosity takes center stage. Children begin identifying letters, numbers, and connecting with
+                        the world around them.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-600">
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span> Pre-Writing Skills
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-600">
+                            <span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span> Oral Expression
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. The Preparatory Years (LKG - UKG) -->
+    <section class="py-24 px-6 bg-white relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-8 items-end mb-16 px-4">
+                <div class="order-2 md:order-1 h-px bg-slate-200 flex-1 mb-4 hidden md:block"></div>
+                <div class="reveal order-1 md:order-2 text-right">
+                    <h2
+                        class="text-6xl font-playfair font-black text-navy/10 absolute -top-16 -right-4 select-none pointer-events-none">
+                        02</h2>
+                    <h3 class="text-3xl md:text-4xl font-playfair font-black text-navy">Preparatory Years</h3>
+                    <p class="text-brand-yellow font-bold uppercase tracking-widest text-xs mt-2">Ages 3.5 - 5.5 Years
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- LKG -->
+                <div class="glass-card rounded-[3rem] p-10 relative overflow-hidden group reveal"
+                    style="border-color: rgba(255, 215, 0, 0.3);">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-yellow to-transparent">
+                    </div>
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-brand-yellow/10 flex items-center justify-center text-brand-yellow mb-8 group-hover:scale-110 transition-transform">
+                        <i data-lucide="pencil-ruler" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-navy mb-4">LKG (Kindergarten I)</h4>
+                    <p class="text-slate-500 mb-6 leading-relaxed">
+                        Structured learning begins. Phonics, basic numeracy, and environmental awareness are taught
+                        through interactive methods.
+                    </p>
+                    <span
+                        class="inline-block py-1 px-3 rounded-md bg-yellow-50 text-brand-yellow text-[10px] font-black uppercase tracking-widest">Writing
+                        & Math</span>
+                </div>
+
+                <!-- UKG -->
+                <div class="glass-card rounded-[3rem] p-10 relative overflow-hidden group reveal"
+                    style="transition-delay: 0.2s; border-color: rgba(0, 245, 212, 0.3);">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-teal to-transparent"></div>
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-brand-teal/10 flex items-center justify-center text-brand-teal mb-8 group-hover:scale-110 transition-transform">
+                        <i data-lucide="book-open" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-navy mb-4">UKG (Kindergarten II)</h4>
+                    <p class="text-slate-500 mb-6 leading-relaxed">
+                        The bridge to formal schooling. Complex sentences, logical reasoning, and independent reading
+                        skills are honed here.
+                    </p>
+                    <span
+                        class="inline-block py-1 px-3 rounded-md bg-teal-50 text-brand-teal text-[10px] font-black uppercase tracking-widest">Logic
+                        & Reading</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. The Primary Years (Grade 1 - 6) -->
+    <section class="py-24 px-6 relative overflow-hidden">
+        <!-- Background Decor -->
+        <div class="absolute inset-0 bg-brand-blue/5 -skew-y-3 scale-110 -z-20 origin-top-left"></div>
+
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-8 items-end mb-16 px-4">
+                <div class="reveal">
+                    <h2
+                        class="text-6xl font-playfair font-black text-navy/10 absolute -top-16 -left-4 select-none pointer-events-none">
+                        03</h2>
+                    <h3 class="text-3xl md:text-4xl font-playfair font-black text-navy">Primary Years</h3>
+                    <p class="text-brand-purple font-bold uppercase tracking-widest text-xs mt-2">Grade 1 - Grade 6</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6">
+                <!-- Generic Card for 1-2 -->
+                <div
+                    class="glass-card rounded-[2rem] p-8 shadow-xl border border-white/40 group hover:-translate-y-2 transition-transform reveal">
+                    <div class="h-40 mb-6 rounded-2xl overflow-hidden relative shadow-inner">
+                        <img src="public/building.webp"
+                            class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                            alt="Primary">
+                        <div
+                            class="absolute bottom-2 left-2 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-[10px] font-black uppercase text-brand-blue">
+                            Grade 1 - 2</div>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy mb-2">Young Explorers</h4>
+                    <p class="text-sm text-slate-500 mb-4">Solidifying basics in Math, Languages, and Environmental
+                        Science through project-based learning.</p>
+                </div>
+
+                <!-- Generic Card for 3-4 -->
+                <div class="glass-card rounded-[2rem] p-8 shadow-xl border border-white/40 group hover:-translate-y-2 transition-transform reveal"
+                    style="transition-delay: 0.1s">
+                    <div class="h-40 mb-6 rounded-2xl overflow-hidden relative shadow-inner">
+                        <img src="public/function.webp"
+                            class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                            alt="Primary">
+                        <div
+                            class="absolute bottom-2 left-2 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-[10px] font-black uppercase text-brand-purple">
+                            Grade 3 - 4</div>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy mb-2">Critical Thinkers</h4>
+                    <p class="text-sm text-slate-500 mb-4">Introduction to broader concepts, scientific inquiry, and
+                        structured written expression.</p>
+                </div>
+
+                <!-- Generic Card for 5-6 -->
+                <div class="glass-card rounded-[2rem] p-8 shadow-xl border border-white/40 group hover:-translate-y-2 transition-transform reveal"
+                    style="transition-delay: 0.2s">
+                    <div class="h-40 mb-6 rounded-2xl overflow-hidden relative shadow-inner">
+                        <img src="public/activity2.webp"
+                            class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                            alt="Primary">
+                        <div
+                            class="absolute bottom-2 left-2 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-[10px] font-black uppercase text-brand-yellow">
+                            Grade 5 - 6</div>
+                    </div>
+                    <h4 class="text-xl font-bold text-navy mb-2">Future Leaders</h4>
+                    <p class="text-sm text-slate-500 mb-4">Advanced problem solving, debaters, and confident learners
+                        ready for middle school challenges.</p>
+                </div>
+            </div>
+
+            <!-- Subject Pills -->
+            <div class="mt-12 flex flex-wrap gap-3 justify-center reveal">
+                <span
+                    class="px-6 py-3 rounded-full bg-white shadow-sm border border-slate-200 text-xs font-bold text-navy">Mathematics</span>
+                <span
+                    class="px-6 py-3 rounded-full bg-white shadow-sm border border-slate-200 text-xs font-bold text-navy">General
+                    Science</span>
+                <span
+                    class="px-6 py-3 rounded-full bg-white shadow-sm border border-slate-200 text-xs font-bold text-navy">English
+                    Literature</span>
+                <span
+                    class="px-6 py-3 rounded-full bg-white shadow-sm border border-slate-200 text-xs font-bold text-navy">Hindi</span>
+                <span
+                    class="px-6 py-3 rounded-full bg-white shadow-sm border border-slate-200 text-xs font-bold text-navy">Social
+                    Studies</span>
+                <span
+                    class="px-6 py-3 rounded-full bg-white shadow-sm border border-slate-200 text-xs font-bold text-navy">Computer
+                    Science</span>
+                <span
+                    class="px-6 py-3 rounded-full bg-white shadow-sm border border-slate-200 text-xs font-bold text-navy">Physical
+                    Education</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Glimpses (New 4-Column Layout) -->
+    <section class="py-20 px-6 relative overflow-hidden bg-brand-light-bg">
+        <!-- Playful Background Decorations -->
+        <div class="absolute top-10 left-10 animate-float">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" class="text-brand-pink fill-current opacity-20">
+                <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+            </svg>
+        </div>
+        <div class="absolute bottom-10 right-10 animate-spin-slow">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none"
+                class="text-brand-yellow fill-current opacity-20">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12 reveal">
+                <span
+                    class="inline-block py-1 px-4 rounded-full bg-brand-teal/10 text-brand-teal font-black text-[10px] tracking-[0.3em] uppercase mb-4">Explore
+                    Life</span>
+                <h2 class="text-3xl md:text-5xl font-playfair font-black text-navy">Moments of Wonder</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Image 1 -->
+                <a href="gallery.html"
+                    class="group relative rounded-3xl overflow-hidden aspect-[4/3] shadow-lg border-4 border-white rotate-1 hover:rotate-0 transition-all duration-500 reveal block">
+                    <img src="public/activities.webp"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        alt="Activity">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                    <span
+                        class="absolute bottom-4 left-4 text-white font-black uppercase text-xs tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Play
+                        Time</span>
+                </a>
+
+                <!-- Image 2 -->
+                <a href="gallery.html"
+                    class="group relative rounded-3xl overflow-hidden aspect-[4/3] shadow-lg border-4 border-white -rotate-1 hover:rotate-0 transition-all duration-500 reveal block"
+                    style="transition-delay: 0.1s">
+                    <img src="public/function.webp"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        alt="Function">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                    <span
+                        class="absolute bottom-4 left-4 text-white font-black uppercase text-xs tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Performance</span>
+                </a>
+
+                <!-- Image 3 -->
+                <a href="gallery.html"
+                    class="group relative rounded-3xl overflow-hidden aspect-[4/3] shadow-lg border-4 border-white rotate-1 hover:rotate-0 transition-all duration-500 reveal block"
+                    style="transition-delay: 0.2s">
+                    <img src="public/activity2.webp"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        alt="Learning">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                    <span
+                        class="absolute bottom-4 left-4 text-white font-black uppercase text-xs tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Learning</span>
+                </a>
+
+                <!-- Image 4 -->
+                <a href="gallery.html"
+                    class="group relative rounded-3xl overflow-hidden aspect-[4/3] shadow-lg border-4 border-white -rotate-1 hover:rotate-0 transition-all duration-500 reveal block"
+                    style="transition-delay: 0.3s">
+                    <img src="public/event1.webp"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        alt="Event">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                    <span
+                        class="absolute bottom-4 left-4 text-white font-black uppercase text-xs tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Celebration</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+        class="bg-navy text-white pt-20 pb-10 px-6 relative overflow-hidden font-poppins border-t-[6px] border-brand-yellow">
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-blue/20 rounded-full blur-[80px]"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-brand-purple/20 rounded-full blur-[80px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 mb-16">
+                <!-- Column 1: Brand & Logo -->
+                <div class="lg:col-span-4 space-y-6">
+                    <a href="index.html" class="flex items-center gap-4 group">
+                        <div
+                            class="relative w-16 h-16 bg-white rounded-full p-1 group-hover:rotate-12 transition-transform duration-500 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                            <img src="logo.png" alt="Small Wonders Logo" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flex flex-col leading-none">
+                            <span class="text-2xl font-black font-nunito tracking-tighter uppercase text-white">
+                                Small<span class="text-brand-blue">Wonders</span>
+                            </span>
+                            <span class="text-[10px] font-bold tracking-[0.4em] text-white/50 uppercase">School</span>
+                        </div>
+                    </a>
+                    <p class="text-white/70 text-sm leading-relaxed max-w-sm">
+                        Nurturing young minds with a perfect blend of modern curriculum and traditional values. Join us
+                        in shaping the future.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/share/16pkk2W8Qv/?mibextid=wwXIfr" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-blue hover:scale-110 transition-all text-white">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://www.instagram.com/small_wonders_school_for_kids?igsh=MTJmeGE4ZWJtMXBtdQ=="
+                            target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-pink hover:scale-110 transition-all text-white">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="lg:col-span-3 lg:col-start-6 space-y-6">
+                    <h4 class="text-lg font-bold font-playfair text-brand-yellow">Explore</h4>
+                    <ul class="space-y-4 text-sm font-medium text-white/80">
+                        <li><a href="index.html"
+                                class="hover:text-brand-blue flex items-center gap-2 transition-colors"><i
+                                    data-lucide="chevron-right" class="w-4 h-4 text-white/30"></i> Home</a></li>
+                        <li><a href="courses.html"
+                                class="hover:text-brand-blue flex items-center gap-2 transition-colors text-white"><i
+                                    data-lucide="chevron-right" class="w-4 h-4 text-brand-blue"></i> Academics</a></li>
+                        <li><a href="gallery.html"
+                                class="hover:text-brand-blue flex items-center gap-2 transition-colors"><i
+                                    data-lucide="chevron-right" class="w-4 h-4 text-white/30"></i> Gallery</a></li>
+                        <li><a href="inquiry/admission.html"
+                                class="hover:text-brand-blue flex items-center gap-2 transition-colors"><i
+                                    data-lucide="chevron-right" class="w-4 h-4 text-white/30"></i> Admissions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Contact & Map -->
+                <div class="lg:col-span-4 space-y-6">
+                    <h4 class="text-lg font-bold font-playfair text-brand-teal">Locate Us</h4>
+
+                    <div class="space-y-4 text-sm text-white/80 mb-6">
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-brand-pink shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">near छोटी मस्जिद, Sector 2, Haroon Nagar, Haroon Colony Sector
+                                -II, Phulwari Sharif, Patna, Bihar 800002</span>
+                        </div>
+                    </div>
+
+                    <!-- Mini Map -->
+                    <div
+                        class="w-full h-40 rounded-2xl overflow-hidden border-2 border-white/20 shadow-lg relative group">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d57576.62322258748!2d85.0880679!3d25.5870014!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed57ae52d4f803%3A0xa16990621a880617!2sSmall%20Wonders%20School%20For%20Kids!5e0!3m2!1sen!2sin!4v1769266422287!5m2!1sen!2sin"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade" class="transition-all duration-500">
+                        </iframe>
+                        <div
+                            class="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-navy/90 to-transparent pointer-events-none">
+                        </div>
+
+                        <!-- External Link Overlay Button -->
+                        <a href="https://maps.app.goo.gl/WEC3DCrSb4SNzk4o7" target="_blank"
+                            class="absolute top-2 right-2 bg-white text-navy p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-brand-blue hover:text-white"
+                            title="Open in Google Maps">
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div
+                class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">
+                <p>&copy; 2026 Small Wonders School. All rights reserved.</p>
+                <div class="mt-4 md:mt-0">Made with <span class="text-brand-pink">♥</span> for Kids</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admission Float Button -->
+    <div class="session-text">2026-27 Session Starts Now</div>
+    <a href="inquiry/admission.html" class="admission-float">
+        <span>Apply Now</span>
+    </a>
+
+    <script>
+        lucide.createIcons();
+
+        // Header Scroll Logic
+        const header = document.getElementById('header-container');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-menu-btn');
+
+        function toggleMenu() {
+            menu.classList.toggle('translate-x-full');
+            // Lock body scroll when menu is open
+            if (!menu.classList.contains('translate-x-full')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        if (btn) btn.addEventListener('click', toggleMenu);
+        if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
+
+        // Reveal Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
