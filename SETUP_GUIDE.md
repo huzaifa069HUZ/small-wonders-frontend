@@ -7,7 +7,10 @@ Follow these steps exactly to activate your new Admin Dashboard.
 2.  **Enable Authentication**:
     *   Click **Build** > **Authentication** > **Get Started**.
     *   Select **Email/Password** > Enable it > Save.
-    *   Click **Users** tab > **Add User** > Enter your email and a strong password (this will be your admin login).
+    *   Click **Users** tab > **Add User**:
+        *   **Email**: `admin@smallwonders.com` (Must be exactly this!).
+        *   **Password**: [Choose your secret admin password].
+    *   This "fake" email connects your password to the secure system.
 3.  **Enable Database**:
     *   Click **Build** > **Firestore Database** > **Create Database**.
     *   Choose location (e.g., `asia-south1` or `nam5`).
