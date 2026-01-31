@@ -24,16 +24,20 @@ module.exports = async (req, res) => {
             return res.status(400).json({ error: 'Filename is required' });
         }
 
+        if (!process.env.BLOB_READ_WRITE_TOKEN) {
+            console.error('Missing BLOB_READ_WRITE_TOKEN');
+            return res.status(500).json({ error: 'Server configuration error: Missing Blob Token' });
+        }
+
         // Capture the file from the request body
-        // Note: This requires the body to be the raw binary data or a buffer
         const blob = await put(filename, req.body, {
             access: 'public',
-            token: process.env.BLOB_READ_WRITE_TOKEN, // Vercel adds this automatically
+            token: process.env.BLOB_READ_WRITE_TOKEN,
         });
 
         return res.status(200).json(blob);
     } catch (error) {
-        console.error(error);
+        console.error('Upload Error:', error);
         return res.status(500).json({ error: 'Upload failed: ' + error.message });
     }
 };
