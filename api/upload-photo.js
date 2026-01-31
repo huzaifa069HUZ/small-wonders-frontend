@@ -6,31 +6,22 @@ module.exports = async (req, res) => {
     }
 
     try {
-        // 1. Basic security check (we will enforce Firebase auth on frontend)
-        // In a production app, we would verify the Firebase ID token here too.
-
-        const file = req.body;
-        // Note: Vercel functions handle streaming automatically, but for blobs we might need parsing.
-        // However, @vercel/blob handles 'request' objects directly in many cases.
-        // Since we are likely sending a POST with the file query param or body.
-
-        // Better approach for client uploads:
-        // We will use the handleUpload helper OR simple direct server-side upload if the file is small.
-        // For simplicity, let's assume we pass the filename in query and content in body.
-
-        const filename = req.query.filename;
-
-        if (!filename) {
-            return res.status(400).json({ error: 'Filename is required' });
-        }
-
         if (!process.env.BLOB_READ_WRITE_TOKEN) {
             console.error('Missing BLOB_READ_WRITE_TOKEN');
             return res.status(500).json({ error: 'Server configuration error: Missing Blob Token' });
         }
 
-        // Capture the file from the request body
-        const blob = await put(filename, req.body, {
+        // Parse URL to get filename since bodyParser is false (raw request)
+        // construct a full URL to parse search params easily
+        const url = new URL(req.url, `http://${req.headers.host}`);
+        const filename = url.searchParams.get('filename');
+
+        if (!filename) {
+            return res.status(400).json({ error: 'Filename is required' });
+        }
+
+        // Stream the upload directly from the request
+        const blob = await put(filename, req, {
             access: 'public',
             token: process.env.BLOB_READ_WRITE_TOKEN,
         });
@@ -40,4 +31,11 @@ module.exports = async (req, res) => {
         console.error('Upload Error:', error);
         return res.status(500).json({ error: 'Upload failed: ' + error.message });
     }
+};
+
+// Disable Vercel's default body parser to handle the raw stream
+module.exports.config = {
+    api: {
+        bodyParser: false,
+    },
 };
