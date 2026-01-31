@@ -1,0 +1,10 @@
+{
+    "name": "small-wonders-school",
+    "version": "1.0.0",
+    "description": "Small Wonders Kids School Website",
+    "main": "index.html",
+    "dependencies": {
+        "nodemailer": "^6.9.8",
+        "dotenv": "^16.3.1"
+    }
+}
