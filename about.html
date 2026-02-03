@@ -759,11 +759,13 @@
                 </div>
 
                 <!-- 3D Carousel Container (Custom 3D) -->
-                <div class="scene w-full h-[500px] relative flex justify-center items-center perspective-1000">
+                <!-- Mobile View: Interactive 3D Carousel -->
+                <div
+                    class="md:hidden scene w-full h-[500px] relative flex justify-center items-center perspective-1000">
                     <div class="carousel w-full h-full absolute transform-style-3d transition-transform duration-500">
                         <!-- Card 1 -->
                         <div
-                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] md:w-[320px] h-[400px] -ml-[140px] md:-ml-[160px] -mt-[200px]">
+                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] h-[400px] -ml-[140px] -mt-[200px]">
                             <div
                                 class="h-full glass-card-premium rounded-[2rem] p-6 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
                                 <img src="assets/card-school.png"
@@ -776,7 +778,7 @@
                         </div>
                         <!-- Card 2 -->
                         <div
-                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] md:w-[320px] h-[400px] -ml-[140px] md:-ml-[160px] -mt-[200px]">
+                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] h-[400px] -ml-[140px] -mt-[200px]">
                             <div
                                 class="h-full glass-card-premium rounded-[2rem] p-6 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
                                 <img src="assets/card-creative.png"
@@ -789,7 +791,7 @@
                         </div>
                         <!-- Card 3 -->
                         <div
-                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] md:w-[320px] h-[400px] -ml-[140px] md:-ml-[160px] -mt-[200px]">
+                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] h-[400px] -ml-[140px] -mt-[200px]">
                             <div
                                 class="h-full glass-card-premium rounded-[2rem] p-6 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
                                 <img src="assets/card-learn.png"
@@ -797,12 +799,13 @@
                                     alt="Smart Learning">
                                 <h3 class="text-xl font-bold text-navy mb-2">Smart Learning</h3>
                                 <p class="text-slate-600 text-sm font-medium">Developing critical thinking through
-                                    modern methods.</p>
+                                    modern
+                                    methods.</p>
                             </div>
                         </div>
                         <!-- Card 4 -->
                         <div
-                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] md:w-[320px] h-[400px] -ml-[140px] md:-ml-[160px] -mt-[200px]">
+                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] h-[400px] -ml-[140px] -mt-[200px]">
                             <div
                                 class="h-full glass-card-premium rounded-[2rem] p-6 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
                                 <img src="assets/card-care.png"
@@ -815,7 +818,7 @@
                         </div>
                         <!-- Card 5 -->
                         <div
-                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] md:w-[320px] h-[400px] -ml-[140px] md:-ml-[160px] -mt-[200px]">
+                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] h-[400px] -ml-[140px] -mt-[200px]">
                             <div
                                 class="h-full glass-card-premium rounded-[2rem] p-6 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
                                 <img src="assets/card-teach.png"
@@ -823,12 +826,13 @@
                                     alt="Expert Teachers">
                                 <h3 class="text-xl font-bold text-navy mb-2">Expert Teachers</h3>
                                 <p class="text-slate-600 text-sm font-medium">Passionate educators dedicated to
-                                    nurturing growth.</p>
+                                    nurturing
+                                    growth.</p>
                             </div>
                         </div>
                         <!-- Card 6 -->
                         <div
-                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] md:w-[320px] h-[400px] -ml-[140px] md:-ml-[160px] -mt-[200px]">
+                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] h-[400px] -ml-[140px] -mt-[200px]">
                             <div
                                 class="h-full glass-card-premium rounded-[2rem] p-6 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
                                 <img src="assets/card-play.png"
@@ -836,6 +840,78 @@
                                     alt="Fun Activities">
                                 <h3 class="text-xl font-bold text-navy mb-2">Fun Activities</h3>
                                 <p class="text-slate-600 text-sm font-medium">Sports, games, and outdoor adventures.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop View: Original CSS 3D Spinner -->
+                <div class="hidden md:flex justify-center items-center h-[600px] perspective-container">
+                    <div class="carousel-spinner">
+                        <!-- Card 1 -->
+                        <div class="carousel-item" style="transform: rotateY(0deg) translateZ(450px);">
+                            <div
+                                class="w-full h-full glass-card-premium rounded-[2rem] p-8 flex flex-col items-center text-center justify-center group hover:bg-white transition-all duration-300">
+                                <img src="assets/card-school.png"
+                                    class="w-48 h-48 object-contain mb-4 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                    alt="Best Kids School">
+                                <h3 class="text-xl font-bold text-navy mb-2">Best Kids School</h3>
+                                <p class="text-slate-600 text-sm">Recognized for excellence in early education.</p>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="carousel-item" style="transform: rotateY(60deg) translateZ(450px);">
+                            <div
+                                class="w-full h-full glass-card-premium rounded-[2rem] p-8 flex flex-col items-center text-center justify-center group hover:bg-white transition-all duration-300">
+                                <img src="assets/card-creative.png"
+                                    class="w-48 h-48 object-contain mb-4 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                    alt="Creativity">
+                                <h3 class="text-xl font-bold text-navy mb-2">Creativity</h3>
+                                <p class="text-slate-600 text-sm">Arts, music, and dance programs.</p>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="carousel-item" style="transform: rotateY(120deg) translateZ(450px);">
+                            <div
+                                class="w-full h-full glass-card-premium rounded-[2rem] p-8 flex flex-col items-center text-center justify-center group hover:bg-white transition-all duration-300">
+                                <img src="assets/card-learn.png"
+                                    class="w-48 h-48 object-contain mb-4 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                    alt="Smart Learning">
+                                <h3 class="text-xl font-bold text-navy mb-2">Smart Learning</h3>
+                                <p class="text-slate-600 text-sm">Developing critical thinking skills.</p>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="carousel-item" style="transform: rotateY(180deg) translateZ(450px);">
+                            <div
+                                class="w-full h-full glass-card-premium rounded-[2rem] p-8 flex flex-col items-center text-center justify-center group hover:bg-white transition-all duration-300">
+                                <img src="assets/card-care.png"
+                                    class="w-48 h-48 object-contain mb-4 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                    alt="Caring">
+                                <h3 class="text-xl font-bold text-navy mb-2">Caring</h3>
+                                <p class="text-slate-600 text-sm">Safe and nurturing environment.</p>
+                            </div>
+                        </div>
+                        <!-- Card 5 -->
+                        <div class="carousel-item" style="transform: rotateY(240deg) translateZ(450px);">
+                            <div
+                                class="w-full h-full glass-card-premium rounded-[2rem] p-8 flex flex-col items-center text-center justify-center group hover:bg-white transition-all duration-300">
+                                <img src="assets/card-teach.png"
+                                    class="w-48 h-48 object-contain mb-4 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                    alt="Expert Teachers">
+                                <h3 class="text-xl font-bold text-navy mb-2">Expert Teachers</h3>
+                                <p class="text-slate-600 text-sm">Passionate and trained educators.</p>
+                            </div>
+                        </div>
+                        <!-- Card 6 -->
+                        <div class="carousel-item" style="transform: rotateY(300deg) translateZ(450px);">
+                            <div
+                                class="w-full h-full glass-card-premium rounded-[2rem] p-8 flex flex-col items-center text-center justify-center group hover:bg-white transition-all duration-300">
+                                <img src="assets/card-play.png"
+                                    class="w-48 h-48 object-contain mb-4 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                    alt="Fun Activities">
+                                <h3 class="text-xl font-bold text-navy mb-2">Fun Activities</h3>
+                                <p class="text-slate-600 text-sm">Sports, games, and adventures.</p>
                             </div>
                         </div>
                     </div>
