@@ -1,1 +1,2 @@
 *.MOV filter=lfs diff=lfs merge=lfs -text
+assets/IMG_1521.MOV filter=lfs diff=lfs merge=lfs -text
