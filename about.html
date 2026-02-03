@@ -75,8 +75,7 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 
     <!-- Lenis for Smooth Scrolling -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
@@ -515,6 +514,19 @@
                 transform: rotateY(-360deg);
             }
         }
+
+        /* Custom 3D Carousel Classes */
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
     </style>
 </head>
 
@@ -746,83 +758,86 @@
                     </p>
                 </div>
 
-                <!-- 3D Carousel Container (Swiper) -->
-                <div class="relative w-full py-10">
-                    <div class="swiper mySwiper w-full md:w-[80vw] mx-auto py-12">
-                        <div class="swiper-wrapper">
-                            <!-- Card 1 -->
-                            <div class="swiper-slide w-[300px] md:w-[350px]">
-                                <div
-                                    class="h-[420px] glass-card-premium rounded-[2.5rem] p-8 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
-                                    <img src="assets/card-school.png"
-                                        class="w-40 h-40 object-contain mb-6 filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
-                                        alt="Best Kids School">
-                                    <h3 class="text-2xl font-bold text-navy mb-3">Best Kids School</h3>
-                                    <p class="text-slate-600 font-medium">Recognized for excellence in early
-                                        childhood education.</p>
-                                </div>
-                            </div>
-                            <!-- Card 2 -->
-                            <div class="swiper-slide w-[300px] md:w-[350px]">
-                                <div
-                                    class="h-[420px] glass-card-premium rounded-[2.5rem] p-8 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
-                                    <img src="assets/card-creative.png"
-                                        class="w-40 h-40 object-contain mb-6 filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
-                                        alt="Creativity">
-                                    <h3 class="text-2xl font-bold text-navy mb-3">Creativity & Arts</h3>
-                                    <p class="text-slate-600 font-medium">Daily programs including arts, music, and
-                                        dance.</p>
-                                </div>
-                            </div>
-                            <!-- Card 3 -->
-                            <div class="swiper-slide w-[300px] md:w-[350px]">
-                                <div
-                                    class="h-[420px] glass-card-premium rounded-[2.5rem] p-8 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
-                                    <img src="assets/card-learn.png"
-                                        class="w-40 h-40 object-contain mb-6 filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
-                                        alt="Smart Learning">
-                                    <h3 class="text-2xl font-bold text-navy mb-3">Smart Learning</h3>
-                                    <p class="text-slate-600 font-medium">Developing critical thinking through modern
-                                        methods.</p>
-                                </div>
-                            </div>
-                            <!-- Card 4 -->
-                            <div class="swiper-slide w-[300px] md:w-[350px]">
-                                <div
-                                    class="h-[420px] glass-card-premium rounded-[2.5rem] p-8 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
-                                    <img src="assets/card-care.png"
-                                        class="w-40 h-40 object-contain mb-6 filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
-                                        alt="Caring Environment">
-                                    <h3 class="text-2xl font-bold text-navy mb-3">Caring Environment</h3>
-                                    <p class="text-slate-600 font-medium">A warm atmosphere where every child feels
-                                        safe.</p>
-                                </div>
-                            </div>
-                            <!-- Card 5 -->
-                            <div class="swiper-slide w-[300px] md:w-[350px]">
-                                <div
-                                    class="h-[420px] glass-card-premium rounded-[2.5rem] p-8 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
-                                    <img src="assets/card-teach.png"
-                                        class="w-40 h-40 object-contain mb-6 filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
-                                        alt="Expert Teachers">
-                                    <h3 class="text-2xl font-bold text-navy mb-3">Expert Teachers</h3>
-                                    <p class="text-slate-600 font-medium">Passionate educators dedicated to nurturing
-                                        growth.</p>
-                                </div>
-                            </div>
-                            <!-- Card 6 -->
-                            <div class="swiper-slide w-[300px] md:w-[350px]">
-                                <div
-                                    class="h-[420px] glass-card-premium rounded-[2.5rem] p-8 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
-                                    <img src="assets/card-play.png"
-                                        class="w-40 h-40 object-contain mb-6 filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
-                                        alt="Fun Activities">
-                                    <h3 class="text-2xl font-bold text-navy mb-3">Fun Activities</h3>
-                                    <p class="text-slate-600 font-medium">Sports, games, and outdoor adventures.</p>
-                                </div>
+                <!-- 3D Carousel Container (Custom 3D) -->
+                <div class="scene w-full h-[500px] relative flex justify-center items-center perspective-1000">
+                    <div class="carousel w-full h-full absolute transform-style-3d transition-transform duration-500">
+                        <!-- Card 1 -->
+                        <div
+                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] md:w-[320px] h-[400px] -ml-[140px] md:-ml-[160px] -mt-[200px]">
+                            <div
+                                class="h-full glass-card-premium rounded-[2rem] p-6 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
+                                <img src="assets/card-school.png"
+                                    class="w-32 h-32 object-contain mb-4 filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
+                                    alt="Best Kids School">
+                                <h3 class="text-xl font-bold text-navy mb-2">Best Kids School</h3>
+                                <p class="text-slate-600 text-sm font-medium">Recognized for excellence in early
+                                    childhood education.</p>
                             </div>
                         </div>
-                        <div class="swiper-pagination"></div>
+                        <!-- Card 2 -->
+                        <div
+                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] md:w-[320px] h-[400px] -ml-[140px] md:-ml-[160px] -mt-[200px]">
+                            <div
+                                class="h-full glass-card-premium rounded-[2rem] p-6 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
+                                <img src="assets/card-creative.png"
+                                    class="w-32 h-32 object-contain mb-4 filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
+                                    alt="Creativity">
+                                <h3 class="text-xl font-bold text-navy mb-2">Creativity & Arts</h3>
+                                <p class="text-slate-600 text-sm font-medium">Daily programs including arts, music, and
+                                    dance.</p>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div
+                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] md:w-[320px] h-[400px] -ml-[140px] md:-ml-[160px] -mt-[200px]">
+                            <div
+                                class="h-full glass-card-premium rounded-[2rem] p-6 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
+                                <img src="assets/card-learn.png"
+                                    class="w-32 h-32 object-contain mb-4 filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
+                                    alt="Smart Learning">
+                                <h3 class="text-xl font-bold text-navy mb-2">Smart Learning</h3>
+                                <p class="text-slate-600 text-sm font-medium">Developing critical thinking through
+                                    modern methods.</p>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div
+                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] md:w-[320px] h-[400px] -ml-[140px] md:-ml-[160px] -mt-[200px]">
+                            <div
+                                class="h-full glass-card-premium rounded-[2rem] p-6 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
+                                <img src="assets/card-care.png"
+                                    class="w-32 h-32 object-contain mb-4 filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
+                                    alt="Caring Environment">
+                                <h3 class="text-xl font-bold text-navy mb-2">Caring Environment</h3>
+                                <p class="text-slate-600 text-sm font-medium">A warm atmosphere where every child feels
+                                    safe.</p>
+                            </div>
+                        </div>
+                        <!-- Card 5 -->
+                        <div
+                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] md:w-[320px] h-[400px] -ml-[140px] md:-ml-[160px] -mt-[200px]">
+                            <div
+                                class="h-full glass-card-premium rounded-[2rem] p-6 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
+                                <img src="assets/card-teach.png"
+                                    class="w-32 h-32 object-contain mb-4 filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
+                                    alt="Expert Teachers">
+                                <h3 class="text-xl font-bold text-navy mb-2">Expert Teachers</h3>
+                                <p class="text-slate-600 text-sm font-medium">Passionate educators dedicated to
+                                    nurturing growth.</p>
+                            </div>
+                        </div>
+                        <!-- Card 6 -->
+                        <div
+                            class="carousel-cell absolute left-1/2 top-1/2 w-[280px] md:w-[320px] h-[400px] -ml-[140px] md:-ml-[160px] -mt-[200px]">
+                            <div
+                                class="h-full glass-card-premium rounded-[2rem] p-6 flex flex-col items-center text-center justify-center group hover:bg-white/60 transition-all duration-300">
+                                <img src="assets/card-play.png"
+                                    class="w-32 h-32 object-contain mb-4 filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
+                                    alt="Fun Activities">
+                                <h3 class="text-xl font-bold text-navy mb-2">Fun Activities</h3>
+                                <p class="text-slate-600 text-sm font-medium">Sports, games, and outdoor adventures.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -893,7 +908,7 @@
                             <!-- Main Video -->
                             <div class="rounded-3xl overflow-hidden border-4 border-white/10 shadow-2xl">
                                 <video src="assets/IMG_1521.MOV" class="w-full h-full object-cover min-h-[400px]"
-                                    autoplay muted loop playsinline></video>
+                                    autoplay muted loop playsinline webkit-playsinline></video>
                             </div>
 
 
@@ -1266,33 +1281,132 @@
         btn.addEventListener('click', toggleMenu);
         if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
 
-        // ========== Swiper Initialization ==========
-        // Swiper JS
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: "auto",
-            loop: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            coverflowEffect: {
-                rotate: 50,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: true,
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
+        // ========== Custom 3D Carousel Logic ==========
+        const scene = document.querySelector('.scene');
+        const carousel = document.querySelector('.carousel');
+        const cells = document.querySelectorAll('.carousel-cell');
+        const cellCount = cells.length;
+        let selectedIndex = 0;
+        let cellWidth = scene.offsetWidth;
+        let cellHeight = scene.offsetHeight;
+        let isHorizontal = true;
+        let rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
+        let radius, theta;
+
+        function rotateCarousel() {
+            const angle = theta * selectedIndex * -1;
+            carousel.style.transform = `translateZ(-${radius}px) ${rotateFn}(${angle}deg)`;
+        }
+
+        function changeCarousel() {
+            cellWidth = 320; // Approx width of card + gap
+            // Adjust for mobile
+            if (window.innerWidth < 768) {
+                cellWidth = 280;
+            }
+
+            theta = 360 / cellCount;
+            radius = Math.round((cellWidth / 2) / Math.tan(Math.PI / cellCount));
+
+            for (let i = 0; i < cells.length; i++) {
+                const cell = cells[i];
+                if (i < cellCount) {
+                    // Visible cell
+                    cell.style.opacity = 1;
+                    const cellAngle = theta * i;
+                    cell.style.transform = `${rotateFn}(${cellAngle}deg) translateZ(${radius}px)`;
+                } else {
+                    // Hidden cell
+                    cell.style.opacity = 0;
+                    cell.style.transform = 'none';
+                }
+            }
+
+            rotateCarousel();
+        }
+
+        // Init
+        changeCarousel();
+        window.addEventListener('resize', changeCarousel);
+
+        // Interaction
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+        let startAngle = 0;
+
+        scene.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX;
+            scene.style.cursor = 'grabbing';
+            // Stop auto rotation if implemented
         });
+
+        scene.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX;
+            // Stop auto rotation if implemented
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX;
+            const moveX = x - startX;
+            // Sensitivity
+            const sensitivity = 0.5;
+            const deltaRotation = (moveX / window.innerWidth) * 360 * sensitivity;
+
+            // This is a direct rotation, updating selectedIndex slightly differently would be better for snapping
+            // But for free-spinning 3D:
+            // We want to update the Carousel's rotation directly.
+
+            // Let's implement a simpler "drag to spin"
+            // We'll modify the rotation directly.
+        });
+
+        // Simpler Drag Logic: Just update selectedIndex on swipe
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        scene.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        scene.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        scene.addEventListener('mousedown', e => {
+            touchStartX = e.screenX;
+        });
+
+        scene.addEventListener('mouseup', e => {
+            touchEndX = e.screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const limit = 50;
+            if (touchEndX < touchStartX - limit) {
+                selectedIndex++;
+                rotateCarousel();
+            }
+            if (touchEndX > touchStartX + limit) {
+                selectedIndex--;
+                rotateCarousel();
+            }
+        }
+
+        // Auto Rotation
+        setInterval(() => {
+            if (!document.querySelector('.scene:hover')) {
+                selectedIndex++;
+                rotateCarousel();
+            }
+        }, 3000);
+
 
         // ========== Lenis Smooth Scroll ==========
         const lenis = new Lenis({
@@ -1313,17 +1427,6 @@
 
         requestAnimationFrame(raf);
 
-        // Update ScrollTrigger to work with Lenis
-        // gsap.ticker.add((time)=>{
-        //   lenis.raf(time * 1000)
-        // })
-        // gsap.ticker.lagSmoothing(0)
-
-        // Sync ScrollTrigger with Lenis
-        // lenis.on('scroll', ScrollTrigger.update)
-
-
-        // ========== Smooth Scroll (Override default for Lenis) ==========
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
