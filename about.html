@@ -65,11 +65,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&family=Satisfy&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600;1,700&family=Satisfy&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -83,12 +84,15 @@
                         'nunito': ['Nunito', 'sans-serif'],
                         'playfair': ['Playfair Display', 'serif'],
                         'cursive': ['Satisfy', 'cursive'],
+                        'inter': ['Inter', 'sans-serif'],
                     },
                     colors: {
                         'brand-blue': '#00D1FF',
                         'brand-yellow': '#FFD700',
                         'brand-pink': '#FF2D85',
                         'brand-teal': '#00F5D4',
+                        'brand-purple': '#A855F7',
+                        'brand-orange': '#FF6B35',
                         'brand-light-bg': '#F8F9FA',
                         'brand-dark-text': '#1e293b',
                         'navy': '#0A2540',
@@ -102,18 +106,34 @@
                         },
                         float: {
                             '0%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-20px) rotate(10deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
                             '100%': { transform: 'translateY(0px) rotate(0deg)' },
                         },
-                        liquidFill: {
-                            '0%': { backgroundPosition: '0% 0%' },
-                            '100%': { backgroundPosition: '0% 100%' }
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' }
+                        },
+                        pulse: {
+                            '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'scale(1.05)' }
+                        },
+                        gradientFlow: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' }
+                        },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }
                         }
                     },
                     animation: {
                         fadeInUp: 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                        float: 'float 8s ease-in-out infinite',
-                        liquidFill: 'liquidFill 5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate'
+                        float: 'float 6s ease-in-out infinite',
+                        shimmer: 'shimmer 3s ease-in-out infinite',
+                        pulse: 'pulse 3s ease-in-out infinite',
+                        gradientFlow: 'gradientFlow 8s ease infinite',
+                        scroll: 'scroll 30s linear infinite'
                     }
                 }
             }
@@ -121,19 +141,22 @@
     </script>
 
     <style>
-        .reveal {
-            position: relative;
-            transform: translateY(60px);
+        /* ========== GSAP Animation Classes ========== */
+        .gsap-fade-up {
             opacity: 0;
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(60px);
         }
 
-        .reveal.active {
-            transform: translateY(0px);
-            opacity: 1;
+        .gsap-fade-in {
+            opacity: 0;
         }
 
-        /* Dynamic Island Header Transition */
+        .gsap-scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        /* ========== Dynamic Island Header ========== */
         #header-container {
             top: 0;
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -243,7 +266,125 @@
             width: 15px;
         }
 
-        /* Footer Link Hover */
+        /* ========== Premium Glassmorphism Cards ========== */
+        .glass-card-premium {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow:
+                0 8px 32px rgba(10, 37, 64, 0.08),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .glass-card-premium:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow:
+                0 20px 60px rgba(10, 37, 64, 0.15),
+                0 0 0 1px rgba(0, 209, 255, 0.3) inset,
+                0 0 40px rgba(0, 209, 255, 0.1);
+        }
+
+        /* ========== Animated Gradient Border ========== */
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+            border-radius: 1.5rem;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(90deg, #00D1FF, #FFD700, #FF2D85, #00F5D4, #00D1FF);
+            background-size: 300% 100%;
+            border-radius: inherit;
+            z-index: -1;
+            animation: gradientFlow 4s ease infinite;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gradient-border:hover::before {
+            opacity: 1;
+        }
+
+        /* ========== Icon Glow Effect ========== */
+        .glow-icon {
+            position: relative;
+        }
+
+        .glow-icon::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            background: inherit;
+            border-radius: inherit;
+            filter: blur(15px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .group:hover .glow-icon::after {
+            opacity: 0.5;
+        }
+
+        /* ========== Stats Counter Animation ========== */
+        .stat-number {
+            background: linear-gradient(135deg, #00D1FF 0%, #00F5D4 50%, #FFD700 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 4s ease infinite;
+        }
+
+        /* ========== Gallery Strip ========== */
+        .gallery-strip {
+            display: flex;
+            width: max-content;
+        }
+
+
+
+        .gallery-item {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.08) rotate(-2deg);
+            z-index: 10;
+        }
+
+        /* ========== 3D Tilt Effect ========== */
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        /* ========== Floating Shapes ========== */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* ========== CTA Gradient Button ========== */
+        .cta-button {
+            background: linear-gradient(135deg, #00D1FF 0%, #00F5D4 100%);
+            box-shadow: 0 10px 40px rgba(0, 209, 255, 0.4);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(0, 209, 255, 0.5);
+        }
+
+        /* ========== Footer Link Hover ========== */
         .footer-link {
             position: relative;
             display: inline-flex;
@@ -270,18 +411,110 @@
             margin-right: 8px;
         }
 
-        /* Glass Card Utility */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        /* ========== Section Divider ========== */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 209, 255, 0.3), transparent);
+        }
+
+        /* ========== Paper Grain Texture (Enhanced) ========== */
+        .bg-paper-grain {
+            background-color: #e2e8f0;
+            /* Darker grey (Slate-200) for visibility */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            position: relative;
+        }
+
+        .bg-paper-grain::before,
+        .bg-paper-grain::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+        }
+
+        .bg-paper-grain::before {
+            top: 0;
+        }
+
+        .bg-paper-grain::after {
+            bottom: 0;
+        }
+
+        /* ========== Mobile Optimizations ========== */
+        @media (max-width: 768px) {
+            .about-hero-banner {
+                height: 45vh !important;
+                min-height: 320px;
+            }
+
+            .about-hero-banner h1 {
+                font-size: 1.75rem !important;
+                /* Reduced from 2.25rem/text-3xl */
+                letter-spacing: 0.02em;
+                line-height: 1.2;
+            }
+
+            .about-hero-banner p {
+                font-size: 0.9rem !important;
+            }
+
+            .gallery-strip {
+                animation-duration: 20s;
+            }
+
+            .stat-card {
+                padding: 1.25rem !important;
+            }
+
+            .stat-number {
+                font-size: 2rem !important;
+            }
+        }
+
+        /* ========== 3D Carousel Styles ========== */
+        .perspective-container {
+            perspective: 1200px;
+        }
+
+        .carousel-spinner {
+            width: 340px;
+            height: 420px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spin 20s infinite linear;
+        }
+
+        .carousel-spinner:hover {
+            animation-play-state: paused;
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: visible;
+            /* transform is set inline */
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotateY(0deg);
+            }
+
+            to {
+                transform: rotateY(-360deg);
+            }
         }
     </style>
 </head>
 
 <body class="font-poppins bg-brand-light-bg text-brand-dark-text overflow-x-hidden">
 
-    <!-- Premium Floating Header -->
+    <!-- ========== Premium Floating Header ========== -->
     <header id="header-container" class="fixed z-50">
         <div id="header-inner"
             class="w-full px-6 md:px-16 h-20 md:h-28 flex items-center justify-between transition-all duration-500 relative">
@@ -367,176 +600,526 @@
     </header>
 
     <main>
-        <!-- Banner Image Section (Nano Banana Style) -->
-        <!-- Banner Image Section (Full Width) -->
-        <section class="relative w-full mb-20 reveal active">
-            <div class="relative group h-[50vh] md:h-screen overflow-hidden">
+        <!-- ========== Hero Banner Section (Updated Alignment) ========== -->
+        <section class="relative w-full mb-0">
+            <div class="relative group about-hero-banner h-[55vh] md:h-screen overflow-hidden">
                 <img src="assets/IMG_1549.JPG.jpeg" alt="Small Wonders School Building"
                     class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
                 <div
-                    class="absolute inset-0 bg-gradient-to-r from-navy/80 to-transparent flex items-center px-6 md:px-20">
-                    <div class="text-white max-w-4xl mx-auto w-full">
-
-                        <h1 class="text-4xl md:text-7xl font-playfair font-black leading-tight mb-6">
-                            Nurturing <br />
-                            <span class="text-brand-blue">Brilliant Minds</span>
+                    class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/40 to-transparent flex items-end justify-center pb-12 md:pb-24 px-6">
+                    <div class="text-white max-w-5xl mx-auto w-full text-center">
+                        <h1
+                            class="text-2xl md:text-6xl lg:text-7xl font-playfair font-black leading-tight tracking-tight mb-4 gsap-fade-up">
+                            WELCOME TO <span class="text-brand-blue"
+                                style="text-shadow: 0 0 40px rgba(0, 209, 255, 0.5);">SMALL WONDERS</span><br
+                                class="hidden md:block" /> SCHOOL FOR KIDS
                         </h1>
-                        <p class="text-white/90 text-xl font-medium max-w-lg leading-relaxed">
-                            A modern sanctuary for curiosity, where every child’s potential is unlocked through
-                            innovative learning.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== From Principal's Desk Section (NEW) ========== -->
+        <section class="relative py-20 md:py-32 bg-paper-grain overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+
+                    <!-- Image Side -->
+                    <div class="relative gsap-scale-in">
+                        <div
+                            class="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl skew-y-1 transform transition-all duration-500 hover:skew-y-0">
+                            <img src="assets/IMG_1596.JPG.jpeg" alt="Principal of Small Wonders"
+                                class="w-full h-auto object-cover">
+                        </div>
+                        <!-- Decorative Frame -->
+                        <div
+                            class="absolute inset-0 border-4 border-brand-yellow rounded-[2.5rem] transform translate-x-4 translate-y-4 -z-10 skew-y-1">
+                        </div>
+
+
+                    </div>
+
+                    <!-- Text Side -->
+                    <div class="gsap-fade-up">
+                        <span
+                            class="inline-block px-4 py-2 rounded-full bg-brand-blue/10 text-brand-blue text-xs font-bold uppercase tracking-widest mb-6">Leadership</span>
+
+                        <h2 class="text-4xl md:text-6xl font-playfair font-black text-navy mb-8">
+                            From Principal's <span
+                                class="text-brand-pink underline decoration-wavy decoration-brand-yellow/50 underline-offset-8">Desk</span>
+                        </h2>
+
+                        <div class="space-y-6 text-slate-600 text-lg leading-relaxed font-medium">
+                            <p>
+                                "Welcome to a world where every child is a unique masterpiece. At Small Wonders, we
+                                believe that education is not just about filling a bucket, but lighting a fire."
+                            </p>
+                            <p>
+                                Our mission is to create a safe, nurturing environment where curiosity is celebrated and
+                                character is forged. We are dedicated to partnering with you to lay the strongest
+                                possible foundation for your child's future triumphs.
+                            </p>
+                            <p class="text-navy font-bold italic">
+                                — Committed to your child's brilliance.
+                            </p>
+                        </div>
+
+                        <div class="mt-10">
+                            <img src="logo.png" alt="Signature"
+                                class="h-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== Stats Counter Section ========== -->
+        <section class="relative py-16 md:py-24 bg-navy overflow-hidden">
+            <!-- Floating Decorations -->
+            <div class="floating-shape w-72 h-72 bg-brand-blue/20 top-[-50px] left-[-50px] animate-float"></div>
+            <div class="floating-shape w-96 h-96 bg-brand-pink/10 bottom-[-100px] right-[-100px] animate-float"
+                style="animation-delay: 3s;"></div>
+
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                    <!-- Stat 1 -->
+                    <div
+                        class="stat-card text-center p-6 md:p-8 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 gsap-scale-in">
+                        <div class="stat-number text-4xl md:text-6xl font-black font-inter mb-2" data-count="5">0+</div>
+                        <p class="text-white/60 text-sm md:text-base font-medium uppercase tracking-wider">Years of
+                            Excellence</p>
+                    </div>
+                    <!-- Stat 2 -->
+                    <div class="stat-card text-center p-6 md:p-8 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 gsap-scale-in"
+                        style="animation-delay: 0.1s;">
+                        <div class="stat-number text-4xl md:text-6xl font-black font-inter mb-2" data-count="100">0+
+                        </div>
+                        <p class="text-white/60 text-sm md:text-base font-medium uppercase tracking-wider">Happy
+                            Students</p>
+                    </div>
+                    <!-- Stat 3 -->
+                    <div class="stat-card text-center p-6 md:p-8 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 gsap-scale-in"
+                        style="animation-delay: 0.2s;">
+                        <div class="stat-number text-4xl md:text-6xl font-black font-inter mb-2">12:1</div>
+                        <p class="text-white/60 text-sm md:text-base font-medium uppercase tracking-wider">Student Ratio
+                        </p>
+                    </div>
+                    <!-- Stat 4 -->
+                    <div class="stat-card text-center p-6 md:p-8 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 gsap-scale-in"
+                        style="animation-delay: 0.3s;">
+                        <div class="stat-number text-4xl md:text-6xl font-black font-inter mb-2" data-count="100">0%
+                        </div>
+                        <p class="text-white/60 text-sm md:text-base font-medium uppercase tracking-wider">Parent Trust
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Core Section -->
-        <section class="px-6 pb-24 relative overflow-hidden">
-            <!-- Background Decor -->
-            <div
-                class="absolute top-20 left-[-5%] w-[300px] h-[300px] bg-brand-pink/10 rounded-full blur-[80px] -z-10 animate-float">
-            </div>
-            <div class="absolute bottom-20 right-[-5%] w-[300px] h-[300px] bg-brand-teal/10 rounded-full blur-[80px] -z-10 animate-float"
+        <!-- ========== Why Choose Us Section ========== -->
+        <section
+            class="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-brand-blue/5 via-brand-pink/5 to-brand-yellow/5">
+            <!-- Background Decorations -->
+            <div class="floating-shape w-80 h-80 bg-brand-teal/20 top-20 left-[-100px] animate-float"></div>
+            <div class="floating-shape w-64 h-64 bg-brand-yellow/20 bottom-20 right-[-50px] animate-float"
                 style="animation-delay: 2s;"></div>
 
-            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center reveal">
-                <div class="space-y-8">
-                    <h2 class="text-3xl md:text-5xl font-playfair font-black text-navy relative inline-block">
-                        Why Choose Us?
-                        <svg class="absolute -bottom-2 left-0 w-full h-3 text-brand-yellow" viewBox="0 0 100 10"
-                            preserveAspectRatio="none">
-                            <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="none" />
-                        </svg>
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="text-center mb-16 md:mb-20 gsap-fade-up">
+                    <span
+                        class="inline-block px-4 py-2 rounded-full bg-brand-blue/10 text-brand-blue text-xs font-bold uppercase tracking-widest mb-4">Our
+                        Difference</span>
+                    <h2 class="text-4xl md:text-6xl font-playfair font-black text-navy mb-6">
+                        Why Choose <span class="text-brand-blue">Small Wonders?</span>
                     </h2>
-
-                    <div class="space-y-6">
-                        <!-- Feature 1 -->
-                        <div
-                            class="group relative p-6 rounded-[2rem] bg-white shadow-xl hover:-translate-y-2 transition-all duration-300 border border-slate-100">
-                            <div class="flex items-start gap-6">
-                                <div
-                                    class="w-14 h-14 rounded-2xl bg-brand-orange/10 flex items-center justify-center text-brand-orange group-hover:scale-110 transition-transform">
-                                    <i data-lucide="graduation-cap" class="w-7 h-7"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold text-navy mb-2">Best Kids School in Patna</h4>
-                                    <p class="text-slate-500 text-sm leading-relaxed">Recognized for excellence in early
-                                        childhood education and holistic development.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Feature 2 -->
-                        <div
-                            class="group relative p-6 rounded-[2rem] bg-white shadow-xl hover:-translate-y-2 transition-all duration-300 border border-slate-100">
-                            <div class="flex items-start gap-6">
-                                <div
-                                    class="w-14 h-14 rounded-2xl bg-brand-teal/10 flex items-center justify-center text-brand-teal group-hover:scale-110 transition-transform">
-                                    <i data-lucide="palette" class="w-7 h-7"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold text-navy mb-2">Full of Activities</h4>
-                                    <p class="text-slate-500 text-sm leading-relaxed">Engaging daily programs including
-                                        arts, sports, and sensory play.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Feature 3 -->
-                        <div
-                            class="group relative p-6 rounded-[2rem] bg-white shadow-xl hover:-translate-y-2 transition-all duration-300 border border-slate-100">
-                            <div class="flex items-start gap-6">
-                                <div
-                                    class="w-14 h-14 rounded-2xl bg-brand-pink/10 flex items-center justify-center text-brand-pink group-hover:scale-110 transition-transform">
-                                    <i data-lucide="utensils" class="w-7 h-7"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold text-navy mb-2">Practical Skill Mastery</h4>
-                                    <p class="text-slate-500 text-sm leading-relaxed">Students master skills with
-                                        practical knowledge through hands-on learning.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
+                        We create an environment where curiosity thrives and every child discovers their unique
+                        potential.
+                    </p>
                 </div>
 
-                <!-- Bento Grid Images -->
-                <div class="grid grid-cols-2 gap-4 h-[600px]">
-                    <!-- Tall Image -->
-                    <div class="col-span-1 row-span-2 rounded-[2.5rem] overflow-hidden relative group shadow-2xl">
-                        <img src="assets/activity2.webp"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            alt="Students">
-                        <div class="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 text-white">
-                            <h3 class="text-2xl font-playfair font-bold">Inspired Play</h3>
+                <!-- Features Grid -->
+                <!-- 3D Carousel Container -->
+                <div class="relative w-full py-10 perspective-container">
+
+                    <!-- Mobile View: Horizontal Snap Slider -->
+                    <div class="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 pb-10 hide-scrollbar px-4">
+                        <!-- Card 1 -->
+                        <div
+                            class="snap-center shrink-0 w-[85vw] group glass-card-premium relative overflow-hidden p-8 rounded-[2rem] border border-white/60 bg-white/40 backdrop-blur-xl flex flex-col items-center text-center">
+                            <img src="assets/card-school.png"
+                                class="w-48 h-48 object-contain mb-6 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                alt="Best Kids School">
+                            <h3 class="text-xl font-bold text-navy mb-3">Best Kids School</h3>
+                            <p class="text-slate-600 text-sm font-medium">Recognized for excellence in early childhood
+                                education.</p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div
+                            class="snap-center shrink-0 w-[85vw] group glass-card-premium relative overflow-hidden p-8 rounded-[2rem] border border-white/60 bg-white/40 backdrop-blur-xl flex flex-col items-center text-center">
+                            <img src="assets/card-creative.png"
+                                class="w-48 h-48 object-contain mb-6 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                alt="Creativity">
+                            <h3 class="text-xl font-bold text-navy mb-3">Creativity & Arts</h3>
+                            <p class="text-slate-600 text-sm font-medium">Daily programs including arts, music, and
+                                dance.</p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div
+                            class="snap-center shrink-0 w-[85vw] group glass-card-premium relative overflow-hidden p-8 rounded-[2rem] border border-white/60 bg-white/40 backdrop-blur-xl flex flex-col items-center text-center">
+                            <img src="assets/card-learn.png"
+                                class="w-48 h-48 object-contain mb-6 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                alt="Smart Learning">
+                            <h3 class="text-xl font-bold text-navy mb-3">Smart Learning</h3>
+                            <p class="text-slate-600 text-sm font-medium">Developing critical thinking through modern
+                                methods.</p>
+                        </div>
+                        <!-- Card 4 -->
+                        <div
+                            class="snap-center shrink-0 w-[85vw] group glass-card-premium relative overflow-hidden p-8 rounded-[2rem] border border-white/60 bg-white/40 backdrop-blur-xl flex flex-col items-center text-center">
+                            <img src="assets/card-care.png"
+                                class="w-48 h-48 object-contain mb-6 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                alt="Caring Environment">
+                            <h3 class="text-xl font-bold text-navy mb-3">Caring Environment</h3>
+                            <p class="text-slate-600 text-sm font-medium">A warm atmosphere where every child feels
+                                safe.</p>
+                        </div>
+                        <!-- Card 5 -->
+                        <div
+                            class="snap-center shrink-0 w-[85vw] group glass-card-premium relative overflow-hidden p-8 rounded-[2rem] border border-white/60 bg-white/40 backdrop-blur-xl flex flex-col items-center text-center">
+                            <img src="assets/card-teach.png"
+                                class="w-48 h-48 object-contain mb-6 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                alt="Expert Teachers">
+                            <h3 class="text-xl font-bold text-navy mb-3">Expert Teachers</h3>
+                            <p class="text-slate-600 text-sm font-medium">Passionate educators dedicated to nurturing
+                                growth.</p>
+                        </div>
+                        <!-- Card 6 -->
+                        <div
+                            class="snap-center shrink-0 w-[85vw] group glass-card-premium relative overflow-hidden p-8 rounded-[2rem] border border-white/60 bg-white/40 backdrop-blur-xl flex flex-col items-center text-center">
+                            <img src="assets/card-play.png"
+                                class="w-48 h-48 object-contain mb-6 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                alt="Fun Activities">
+                            <h3 class="text-xl font-bold text-navy mb-3">Fun Activities</h3>
+                            <p class="text-slate-600 text-sm font-medium">Sports, games, and outdoor adventures.</p>
                         </div>
                     </div>
-                    <!-- Small Top -->
-                    <div
-                        class="col-span-1 row-span-1 rounded-[2.5rem] bg-brand-yellow relative overflow-hidden flex items-center justify-center group shadow-xl">
-                        <div class="text-center p-6">
-                            <i data-lucide="brain-circuit" class="w-12 h-12 text-navy mb-2 mx-auto"></i>
-                            <h3 class="text-navy font-bold text-lg">Creative Thinking</h3>
-                        </div>
-                    </div>
-                    <!-- Small Bottom -->
-                    <div
-                        class="col-span-1 row-span-1 rounded-[2.5rem] bg-navy relative overflow-hidden flex items-center justify-center shadow-xl group">
-                        <div class="text-center">
-                            <span class="text-brand-blue text-4xl font-black block">12:1</span>
-                            <span class="text-white/60 text-[10px] font-black uppercase tracking-widest">Student
-                                Ratio</span>
+
+                    <!-- Desktop 3D Spinner -->
+                    <div class="hidden md:flex justify-center items-center h-[500px]">
+                        <div class="carousel-spinner">
+                            <!-- Card 1 -->
+                            <div class="carousel-item" style="transform: rotateY(0deg) translateZ(450px);">
+                                <div
+                                    class="w-full h-full bg-white/80 backdrop-blur-xl border border-white/60 rounded-[2rem] p-8 shadow-xl flex flex-col items-center text-center justify-center group hover:bg-white transition-all duration-300">
+                                    <img src="assets/card-school.png"
+                                        class="w-48 h-48 object-contain mb-4 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                        alt="Best Kids School">
+                                    <h3 class="text-xl font-bold text-navy mb-2">Best Kids School</h3>
+                                    <p class="text-slate-600 text-sm">Recognized for excellence in early education.</p>
+                                </div>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="carousel-item" style="transform: rotateY(60deg) translateZ(450px);">
+                                <div
+                                    class="w-full h-full bg-white/80 backdrop-blur-xl border border-white/60 rounded-[2rem] p-8 shadow-xl flex flex-col items-center text-center justify-center group hover:bg-white transition-all duration-300">
+                                    <img src="assets/card-creative.png"
+                                        class="w-48 h-48 object-contain mb-4 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                        alt="Creativity">
+                                    <h3 class="text-xl font-bold text-navy mb-2">Creativity</h3>
+                                    <p class="text-slate-600 text-sm">Arts, music, and dance programs.</p>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="carousel-item" style="transform: rotateY(120deg) translateZ(450px);">
+                                <div
+                                    class="w-full h-full bg-white/80 backdrop-blur-xl border border-white/60 rounded-[2rem] p-8 shadow-xl flex flex-col items-center text-center justify-center group hover:bg-white transition-all duration-300">
+                                    <img src="assets/card-learn.png"
+                                        class="w-48 h-48 object-contain mb-4 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                        alt="Smart Learning">
+                                    <h3 class="text-xl font-bold text-navy mb-2">Smart Learning</h3>
+                                    <p class="text-slate-600 text-sm">Developing critical thinking skills.</p>
+                                </div>
+                            </div>
+                            <!-- Card 4 -->
+                            <div class="carousel-item" style="transform: rotateY(180deg) translateZ(450px);">
+                                <div
+                                    class="w-full h-full bg-white/80 backdrop-blur-xl border border-white/60 rounded-[2rem] p-8 shadow-xl flex flex-col items-center text-center justify-center group hover:bg-white transition-all duration-300">
+                                    <img src="assets/card-care.png"
+                                        class="w-48 h-48 object-contain mb-4 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                        alt="Caring">
+                                    <h3 class="text-xl font-bold text-navy mb-2">Caring</h3>
+                                    <p class="text-slate-600 text-sm">Safe and nurturing environment.</p>
+                                </div>
+                            </div>
+                            <!-- Card 5 -->
+                            <div class="carousel-item" style="transform: rotateY(240deg) translateZ(450px);">
+                                <div
+                                    class="w-full h-full bg-white/80 backdrop-blur-xl border border-white/60 rounded-[2rem] p-8 shadow-xl flex flex-col items-center text-center justify-center group hover:bg-white transition-all duration-300">
+                                    <img src="assets/card-teach.png"
+                                        class="w-48 h-48 object-contain mb-4 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                        alt="Expert Teachers">
+                                    <h3 class="text-xl font-bold text-navy mb-2">Expert Teachers</h3>
+                                    <p class="text-slate-600 text-sm">Passionate and trained educators.</p>
+                                </div>
+                            </div>
+                            <!-- Card 6 -->
+                            <div class="carousel-item" style="transform: rotateY(300deg) translateZ(450px);">
+                                <div
+                                    class="w-full h-full bg-white/80 backdrop-blur-xl border border-white/60 rounded-[2rem] p-8 shadow-xl flex flex-col items-center text-center justify-center group hover:bg-white transition-all duration-300">
+                                    <img src="assets/card-play.png"
+                                        class="w-48 h-48 object-contain mb-4 filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                                        alt="Fun Activities">
+                                    <h3 class="text-xl font-bold text-navy mb-2">Fun Activities</h3>
+                                    <p class="text-slate-600 text-sm">Sports, games, and adventures.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Heart & Soul Section -->
-        <section class="px-6 pb-24 reveal">
-            <div class="max-w-7xl mx-auto bg-navy rounded-[3rem] p-12 md:p-20 relative overflow-hidden text-white">
-                <!-- Decor -->
-                <div class="absolute top-[-50px] right-[-50px] w-64 h-64 bg-brand-blue/20 rounded-full blur-[60px]">
-                </div>
+        <!-- ========== Our Story Section ========== -->
+        <section class="relative py-20 md:py-32 bg-gradient-to-br from-navy via-navy to-slate-900 overflow-hidden">
+            <!-- Floating Decorations -->
+            <div class="floating-shape w-96 h-96 bg-brand-blue/10 top-[-100px] right-[-100px] animate-float"></div>
+            <div class="floating-shape w-64 h-64 bg-brand-pink/10 bottom-[-50px] left-[-50px] animate-float"
+                style="animation-delay: 4s;"></div>
 
-                <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
-                    <div>
-                        <h3 class="text-brand-yellow font-black tracking-[0.3em] uppercase text-xs mb-6">Our Heart &
-                            Soul</h3>
-                        <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-8 leading-tight">15+ Years of
-                            <br /><span class="text-brand-blue italic">Excellence</span>
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+                    <!-- Content -->
+                    <div class="order-2 lg:order-1 gsap-fade-up">
+                        <span
+                            class="inline-block px-4 py-2 rounded-full bg-brand-yellow/20 text-brand-yellow text-xs font-bold uppercase tracking-widest mb-6">Our
+                            Story</span>
+
+                        <h2 class="text-3xl md:text-5xl font-playfair font-black text-white mb-8 leading-tight">
+                            Building Futures,<br />
+                            <span class="text-brand-blue italic">One Child at a Time</span>
                         </h2>
-                        <p class="text-white/70 text-lg leading-relaxed mb-8">
-                            Founded with a vision to redefine early education. We don't just teach; we inspire children
-                            to become the best versions of themselves through a curriculum that values empathy as much
-                            as excellence.
+
+                        <p class="text-white/70 text-lg leading-relaxed mb-6">
+                            Founded with a vision to redefine early education in Patna, Small Wonders has become a
+                            beacon of excellence. We don't just teach; we inspire children to become confident, curious,
+                            and compassionate individuals.
                         </p>
+
+                        <p class="text-white/70 text-lg leading-relaxed mb-8">
+                            Our curriculum blends traditional values with modern teaching methods, ensuring every child
+                            receives a well-rounded education that prepares them for the future.
+                        </p>
+
+                        <!-- Vision Points -->
+                        <div class="space-y-4 mb-10">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-brand-blue/20 flex items-center justify-center">
+                                    <i data-lucide="check" class="w-5 h-5 text-brand-blue"></i>
+                                </div>
+                                <span class="text-white/80 font-medium">Holistic child development approach</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-brand-teal/20 flex items-center justify-center">
+                                    <i data-lucide="check" class="w-5 h-5 text-brand-teal"></i>
+                                </div>
+                                <span class="text-white/80 font-medium">Safe and nurturing environment</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-brand-yellow/20 flex items-center justify-center">
+                                    <i data-lucide="check" class="w-5 h-5 text-brand-yellow"></i>
+                                </div>
+                                <span class="text-white/80 font-medium">Strong foundation for future success</span>
+                            </div>
+                        </div>
+
                         <a href="inquiry/admission.html"
-                            class="inline-flex items-center gap-3 bg-brand-blue text-white px-8 py-4 rounded-full font-bold uppercase text-[11px] tracking-widest hover:bg-white hover:text-navy transition-all duration-300">
-                            Apply for Admission <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            class="cta-button inline-flex items-center gap-3 text-navy px-8 py-4 rounded-full font-bold uppercase text-sm tracking-widest">
+                            Begin Your Journey <i data-lucide="arrow-right" class="w-5 h-5"></i>
                         </a>
                     </div>
-                    <div class="relative">
-                        <div
-                            class="aspect-square rounded-[2rem] overflow-hidden border-4 border-white/10 shadow-2xl transition-all duration-500">
-                            <video src="assets/IMG_1579.MOV" class="w-full h-full object-cover" autoplay muted loop
-                                playsinline></video>
+
+                    <!-- Video/Image -->
+                    <div class="order-1 lg:order-2 gsap-scale-in">
+                        <div class="relative">
+                            <!-- Main Video -->
+                            <div class="rounded-3xl overflow-hidden border-4 border-white/10 shadow-2xl">
+                                <video src="assets/IMG_1579.MOV" class="w-full aspect-square object-cover" autoplay
+                                    muted loop playsinline></video>
+                            </div>
+
+
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== Gallery Strip Section ========== -->
+        <section class="relative py-16 md:py-24 overflow-hidden bg-slate-50">
+            <div class="mb-10 text-center gsap-fade-up">
+                <span
+                    class="inline-block px-4 py-2 rounded-full bg-brand-pink/10 text-brand-pink text-xs font-bold uppercase tracking-widest mb-4">Gallery</span>
+                <h2 class="text-3xl md:text-5xl font-playfair font-black text-navy">Moments of <span
+                        class="text-brand-blue">Joy</span></h2>
+            </div>
+
+            <!-- Infinite Scroll Gallery -->
+            <div class="relative overflow-hidden">
+                <div class="gallery-strip animate-scroll">
+                    <!-- First Set -->
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/IMG_1518.JPG.jpeg" class="w-full h-full object-cover" alt="Gallery 1">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/IMG_1522.JPG.jpeg" class="w-full h-full object-cover" alt="Gallery 2">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/IMG_1524.JPG.jpeg" class="w-full h-full object-cover" alt="Gallery 3">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/IMG_1527.JPG.jpeg" class="w-full h-full object-cover" alt="Gallery 4">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/IMG_1537.JPG.jpeg" class="w-full h-full object-cover" alt="Gallery 5">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/IMG_1564.JPG.jpeg" class="w-full h-full object-cover" alt="Gallery 6">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/function.webp" class="w-full h-full object-cover" alt="Gallery 7">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/activities.webp" class="w-full h-full object-cover" alt="Gallery 8">
+                    </div>
+                    <!-- Duplicate Set for Seamless Loop -->
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/IMG_1518.JPG.jpeg" class="w-full h-full object-cover" alt="Gallery 1">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/IMG_1522.JPG.jpeg" class="w-full h-full object-cover" alt="Gallery 2">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/IMG_1524.JPG.jpeg" class="w-full h-full object-cover" alt="Gallery 3">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/IMG_1527.JPG.jpeg" class="w-full h-full object-cover" alt="Gallery 4">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/IMG_1537.JPG.jpeg" class="w-full h-full object-cover" alt="Gallery 5">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/IMG_1564.JPG.jpeg" class="w-full h-full object-cover" alt="Gallery 6">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/function.webp" class="w-full h-full object-cover" alt="Gallery 7">
+                    </div>
+                    <div
+                        class="gallery-item flex-shrink-0 w-64 md:w-80 h-48 md:h-64 mx-3 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="assets/activities.webp" class="w-full h-full object-cover" alt="Gallery 8">
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="gallery.html"
+                    class="inline-flex items-center gap-2 text-navy font-bold uppercase tracking-widest text-sm hover:text-brand-blue transition-colors">
+                    View Full Gallery <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- ========== CTA Banner Section ========== -->
+        <section class="relative py-24 md:py-40 overflow-hidden">
+            <!-- Animated Gradient Background -->
+            <div
+                class="absolute inset-0 bg-gradient-to-br from-brand-blue via-brand-pink to-brand-purple bg-[length:400%_400%] animate-gradientFlow opacity-90">
+            </div>
+
+            <!-- Pattern Overlay (Doodles) -->
+            <div class="absolute inset-0 opacity-10"
+                style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M54.627 0l.83.828-1.415 1.415-.828-.828-.828.828-1.415-1.415.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828zM22.485 0l.83.828-1.415 1.415-.828-.828-.828.828-1.415-1.415.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828zM0 22.485l.828.83-1.415 1.415-.828-.828-.828.828L-2.83 22.485l.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828zM0 54.627l.828.83-1.415 1.415-.828-.828-.828.828L-2.83 54.627l.828-.828-.828-.828 1.415-1.415.828.828.828-.828 1.415 1.415-.828.828zM54.627 60L60 54.627l-1.415-1.415-5.385 5.385-5.385-5.385-1.415 1.415 5.385 5.385-5.385 5.385 1.415 1.415 5.385-5.385 5.385 5.385 1.415-1.415-5.385-5.385zM22.485 60L27.87 54.627l-1.415-1.415-5.385 5.385-5.385-5.385-1.415 1.415 5.385 5.385-5.385 5.385 1.415 1.415 5.385-5.385 5.385 5.385 1.415-1.415-5.385-5.385z\' fill=\'%23ffffff\' fill-opacity=\'0.2\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');">
+            </div>
+
+            <!-- Floating Decorative Elements -->
+            <div class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-2xl animate-float"></div>
+            <div class="absolute bottom-10 right-10 w-32 h-32 bg-brand-yellow/20 rounded-full blur-3xl animate-float"
+                style="animation-delay: 2s;"></div>
+            <div class="absolute top-1/2 left-10 animate-bounce" style="animation-duration: 3s;">
+                <i data-lucide="sun" class="w-8 h-8 text-brand-yellow drop-shadow-lg"></i>
+            </div>
+            <div class="absolute top-20 right-20 animate-spin-slow">
+                <i data-lucide="sparkles" class="w-12 h-12 text-white/50"></i>
+            </div>
+
+            <div class="relative max-w-5xl mx-auto px-6 text-center z-10">
+                <span
+                    class="inline-block px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold uppercase tracking-[0.2em] text-xs mb-8 gsap-fade-up shadow-lg">Start
+                    Today</span>
+
+                <h2
+                    class="text-4xl md:text-7xl font-playfair font-black text-white mb-8 gsap-fade-up leading-tight drop-shadow-xl">
+                    Ready to Begin Your<br />
+                    <span
+                        class="font-satisfy text-brand-yellow relative inline-block transform hover:scale-105 transition-transform duration-300 cursor-default"
+                        style="text-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                        Child's Journey?
+                        <svg class="absolute -bottom-2 md:-bottom-4 left-0 w-full h-3 md:h-4 text-white/90"
+                            viewBox="0 0 100 10" preserveAspectRatio="none">
+                            <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="2" fill="none" />
+                        </svg>
+                    </span>
+                </h2>
+
+                <p
+                    class="text-white/90 text-lg md:text-2xl mb-12 max-w-3xl mx-auto gsap-fade-up font-medium leading-relaxed">
+                    Join the Small Wonders family and give your child the foundation for a <span
+                        class="font-bold text-white border-b-2 border-brand-yellow">bright future</span>.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center gsap-fade-up">
+                    <a href="inquiry/admission.html"
+                        class="group relative inline-flex items-center justify-center gap-3 bg-white text-navy px-10 py-5 rounded-full font-black uppercase text-sm tracking-widest hover:bg-brand-yellow hover:text-navy transition-all duration-300 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1">
+                        <span class="relative z-10">Apply For Admission</span>
+                        <i data-lucide="arrow-right"
+                            class="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+
+                    <a href="gallery.html"
+                        class="group inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md text-white px-10 py-5 rounded-full font-bold uppercase text-sm tracking-widest hover:bg-white/20 transition-all duration-300 border border-white/40 hover:border-white/60">
+                        Explore Gallery <i data-lucide="image"
+                            class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                    </a>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Professional Navy Footer -->
-    <footer class="bg-navy text-white pt-32 pb-16 px-8 relative overflow-hidden font-poppins">
+    <!-- ========== Professional Navy Footer ========== -->
+    <footer class="bg-navy text-white pt-24 md:pt-32 pb-16 px-8 relative overflow-hidden font-poppins">
         <div class="absolute top-0 right-0 w-96 h-96 bg-brand-blue/5 rounded-full blur-[100px]"></div>
 
         <div class="max-w-7xl mx-auto relative z-10 text-left">
             <div class="grid lg:grid-cols-12 gap-16 mb-24">
-                <div class="lg:col-span-5 reveal">
+                <div class="lg:col-span-5">
                     <div class="flex flex-col mb-10">
                         <div class="flex items-center gap-4 mb-4">
                             <img src="logo.png" alt="Small Wonders Logo" class="w-16 h-16 object-contain rounded-full">
@@ -551,10 +1134,8 @@
                         </div>
                     </div>
                     <p class="text-white/40 text-sm leading-relaxed mb-10 font-medium max-w-sm text-left">
-                        Nurturing
-                        curiosity and excellence in early childhood education. Dedicated to building global
-                        citizens
-                        since inception.</p>
+                        Nurturing curiosity and excellence in early childhood education. Dedicated to building global
+                        citizens since inception.</p>
                     <div class="flex space-x-4">
                         <a href="https://www.instagram.com/small_wonders_school_for_kids?igsh=MTJmeGE4ZWJtMXBtdQ=="
                             class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gradient-to-tr hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#FCB045] hover:text-white hover:border-transparent transition-all duration-300 group">
@@ -567,7 +1148,7 @@
                     </div>
                 </div>
 
-                <div class="lg:col-span-3 reveal" style="transition-delay: 0.2s">
+                <div class="lg:col-span-3">
                     <h4 class="font-playfair text-lg font-bold text-brand-yellow mb-10">Exploration</h4>
                     <ul class="space-y-6">
                         <li><a href="index.html"
@@ -582,7 +1163,7 @@
                     </ul>
                 </div>
 
-                <div class="lg:col-span-4 reveal" style="transition-delay: 0.4s">
+                <div class="lg:col-span-4">
                     <h4 class="font-playfair text-lg font-bold text-brand-yellow mb-10">Connect</h4>
                     <ul class="space-y-8">
                         <li class="flex items-center space-x-4 text-white/60"><i data-lucide="mail"
@@ -590,8 +1171,7 @@
                                 class="text-sm font-bold">swskpt@gmail.com</span></li>
                         <li class="flex items-start space-x-4 text-white/60"><i data-lucide="map-pin"
                                 class="w-5 h-5 text-brand-blue"></i><span
-                                class="text-sm font-bold leading-relaxed">small
-                                wonders school for kids, Haroon
+                                class="text-sm font-bold leading-relaxed">Small Wonders School for Kids, Haroon
                                 Nagar,<br>Haroon Colony Sector -II, Phulwari Sharif,<br>Patna, Bihar
                                 800002</span>
                         </li>
@@ -601,7 +1181,7 @@
 
             <!-- Map Integration -->
             <div
-                class="w-full h-64 rounded-[2rem] overflow-hidden border-4 border-white/10 shadow-2xl relative group mb-16 reveal">
+                class="w-full h-64 rounded-[2rem] overflow-hidden border-4 border-white/10 shadow-2xl relative group mb-16">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d57576.62322258748!2d85.0880679!3d25.5870014!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed57ae52d4f803%3A0xa16990621a880617!2sSmall%20Wonders%20School%20For%20Kids!5e0!3m2!1sen!2sin!4v1769266422287!5m2!1sen!2sin"
                     width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
@@ -621,9 +1201,99 @@
     </footer>
 
     <script>
+        // Initialize Lucide Icons
         lucide.createIcons();
 
-        // High-end Floating Island Header Logic
+        // ========== GSAP Animations ==========
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Text Animation
+        gsap.to('.about-hero-banner .gsap-fade-up', {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: 'power4.out',
+            stagger: 0.2,
+            delay: 0.3
+        });
+
+        // Stats Counter Animation
+        gsap.utils.toArray('.stat-card').forEach((card, i) => {
+            gsap.to(card, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                ease: 'back.out(1.7)',
+                delay: i * 0.1,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // Counter Animation
+        function animateCounter(element, target, suffix = '') {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+            }, 30);
+        }
+
+        // Trigger counter animation on scroll
+        const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+        statNumbers.forEach(stat => {
+            ScrollTrigger.create({
+                trigger: stat,
+                start: 'top 85%',
+                onEnter: () => {
+                    const target = parseInt(stat.dataset.count);
+                    const suffix = stat.textContent.includes('%') ? '%' : '+';
+                    animateCounter(stat, target, suffix);
+                },
+                once: true
+            });
+        });
+
+        // Fade Up Animations
+        gsap.utils.toArray('.gsap-fade-up').forEach((elem, i) => {
+            gsap.to(elem, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: elem,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // Scale In Animations
+        gsap.utils.toArray('.gsap-scale-in').forEach((elem) => {
+            gsap.to(elem, {
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: elem,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // ========== Header Scroll Effect ==========
         const header = document.getElementById('header-container');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 80) {
@@ -633,14 +1303,13 @@
             }
         });
 
-        // Mobile Menu Logic
+        // ========== Mobile Menu Logic ==========
         const btn = document.getElementById('mobile-menu-button');
         const menu = document.getElementById('mobile-menu');
         const closeBtn = document.getElementById('close-menu-btn');
 
         function toggleMenu() {
             menu.classList.toggle('translate-x-full');
-            // Lock body scroll when menu is open
             if (!menu.classList.contains('translate-x-full')) {
                 document.body.style.overflow = 'hidden';
             } else {
@@ -651,17 +1320,15 @@
         btn.addEventListener('click', toggleMenu);
         if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
 
-
-        // Scroll Reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+        // ========== Smooth Scroll ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
     </script>
 </body>
 
