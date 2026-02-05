@@ -1,4 +1,4 @@
-const firebaseConfig = {
+ const firebaseConfig = {
     apiKey: "AIzaSyAanE8AQXcW9Kaezx4bf7DItgg3hnpVLFc",
     authDomain: "small-wonders-school-ab9b8.firebaseapp.com",
     projectId: "small-wonders-school-ab9b8",
