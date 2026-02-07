@@ -107,6 +107,12 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -180,6 +186,14 @@
         .reveal.active {
             transform: translateY(0px);
             opacity: 1;
+        }
+
+        /* Line Clamp Utility */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         /* Dynamic Island Header Transition */
@@ -831,6 +845,233 @@
                 </div>
             </div>
         </section>
+
+        <!-- Notice Board Section - Editorial Split Layout -->
+        <section id="notice-board" class="py-20 relative overflow-hidden">
+            <!-- Background -->
+            <div class="absolute inset-0 bg-gradient-to-b from-[#FFF8F8] via-white to-[#FFF5F5] -z-20"></div>
+            <!-- Subtle Animated Blobs -->
+            <div
+                class="absolute top-0 right-0 w-[500px] h-[500px] bg-rose-100/30 rounded-full blur-[100px] -z-10 animate-pulse-slow">
+            </div>
+            <div
+                class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-red-100/20 rounded-full blur-[100px] -z-10 animate-pulse-slow animation-delay-2000">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="text-center mb-12 reveal relative z-10">
+                    <p
+                        class="text-xs md:text-sm font-poppins font-semibold tracking-[0.3em] text-rose-400 uppercase mb-3">
+                        Latest Updates</p>
+                    <h2 class="text-4xl md:text-6xl font-playfair font-black text-navy leading-tight">
+                        Notice <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-red-400">Board</span>
+                    </h2>
+                </div>
+
+                <!-- Editorial Split Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 reveal">
+                    <!-- Featured Notice Card (Left - 3/5 width on desktop) -->
+                    <div class="lg:col-span-3 group">
+                        <div
+                            class="relative h-full min-h-[400px] md:min-h-[500px] bg-white rounded-3xl overflow-hidden shadow-xl shadow-rose-100/50 border border-rose-50 transition-all duration-500 hover:shadow-2xl hover:shadow-rose-200/50 hover:-translate-y-1">
+                            <!-- Background Image -->
+                            <img src="assets/notice.png" alt="Admissions Open 2026-27"
+                                class="absolute inset-0 w-full h-full object-contain p-4 md:p-8 bg-gradient-to-br from-slate-50 to-rose-50/50">
+                            <!-- Overlay Content -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/30 to-transparent flex flex-col justify-end p-6 md:p-10">
+                                <span
+                                    class="inline-flex self-start items-center gap-2 px-4 py-1.5 bg-white/90 backdrop-blur-sm text-rose-500 text-[10px] font-black uppercase tracking-widest rounded-full mb-4 shadow-lg">
+                                    <span class="w-2 h-2 bg-rose-500 rounded-full animate-pulse"></span>
+                                    Featured
+                                </span>
+                                <h3
+                                    class="font-playfair font-bold text-3xl md:text-5xl text-white leading-tight drop-shadow-lg">
+                                    Admissions Open
+                                </h3>
+                                <p class="font-poppins text-white/80 text-lg md:text-xl mt-2">Session 2026-27</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text Notice Cards (Right - 2/5 width on desktop) -->
+                    <div class="lg:col-span-2 flex flex-col gap-4" id="text-notices-container">
+                        <!-- Text Notice Card 1 -->
+                        <article
+                            class="notice-card bg-white rounded-2xl p-5 md:p-6 shadow-lg shadow-rose-50 border border-rose-50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-100/50 hover:-translate-y-1 group/card">
+                            <time
+                                class="text-[11px] font-poppins font-semibold text-rose-400 uppercase tracking-wider">Feb
+                                5, 2026</time>
+                            <h4
+                                class="font-nunito font-bold text-lg md:text-xl text-navy mt-2 group-hover/card:text-rose-500 transition-colors">
+                                Holiday Notice</h4>
+                            <p class="font-poppins text-sm text-slate-500 mt-2 leading-relaxed line-clamp-2">
+                                School will remain closed on February 10th, 2026 on account of Saraswati Puja.
+                            </p>
+                            <button
+                                onclick="openNoticeModal('Holiday Notice', 'Feb 5, 2026', 'Dear Parents,\n\nThis is to inform you that the school will remain closed on February 10th, 2026 (Monday) on account of Saraswati Puja.\n\nClasses will resume as usual on February 11th, 2026.\n\nWarm Regards,\nSmall Wonders Kids School')"
+                                class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-rose-500 hover:text-rose-600 transition-colors group/btn">
+                                Read Notice <i data-lucide="arrow-right"
+                                    class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform"></i>
+                            </button>
+                        </article>
+
+                        <!-- Text Notice Card 2 -->
+                        <article
+                            class="notice-card bg-white rounded-2xl p-5 md:p-6 shadow-lg shadow-rose-50 border border-rose-50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-100/50 hover:-translate-y-1 group/card">
+                            <time
+                                class="text-[11px] font-poppins font-semibold text-rose-400 uppercase tracking-wider">Jan
+                                28, 2026</time>
+                            <h4
+                                class="font-nunito font-bold text-lg md:text-xl text-navy mt-2 group-hover/card:text-rose-500 transition-colors">
+                                Parent-Teacher Meeting</h4>
+                            <p class="font-poppins text-sm text-slate-500 mt-2 leading-relaxed line-clamp-2">
+                                PTM is scheduled for February 15th from 10:00 AM to 1:00 PM. All parents are requested
+                                to attend.
+                            </p>
+                            <button
+                                onclick="openNoticeModal('Parent-Teacher Meeting', 'Jan 28, 2026', 'Dear Parents,\n\nWe are pleased to invite you to the Parent-Teacher Meeting (PTM) scheduled for February 15th, 2026.\n\nTimings: 10:00 AM to 1:00 PM\n\nPlease ensure your presence to discuss your child\'s progress.\n\nWarm Regards,\nSmall Wonders Kids School')"
+                                class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-rose-500 hover:text-rose-600 transition-colors group/btn">
+                                Read Notice <i data-lucide="arrow-right"
+                                    class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform"></i>
+                            </button>
+                        </article>
+
+                        <!-- Text Notice Card 3 -->
+                        <article
+                            class="notice-card bg-white rounded-2xl p-5 md:p-6 shadow-lg shadow-rose-50 border border-rose-50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-100/50 hover:-translate-y-1 group/card">
+                            <time
+                                class="text-[11px] font-poppins font-semibold text-rose-400 uppercase tracking-wider">Jan
+                                15, 2026</time>
+                            <h4
+                                class="font-nunito font-bold text-lg md:text-xl text-navy mt-2 group-hover/card:text-rose-500 transition-colors">
+                                Annual Day Celebration</h4>
+                            <p class="font-poppins text-sm text-slate-500 mt-2 leading-relaxed line-clamp-2">
+                                Mark your calendars! Our Annual Day celebration will be held on March 5th. More details
+                                coming soon.
+                            </p>
+                            <button
+                                onclick="openNoticeModal('Annual Day Celebration', 'Jan 15, 2026', 'Dear Parents,\n\nWe are excited to announce our Annual Day Celebration on March 5th, 2026!\n\nVenue: School Auditorium\nTime: 4:00 PM onwards\n\nAll parents are cordially invited. Your child\'s participation details will be shared soon.\n\nWarm Regards,\nSmall Wonders Kids School')"
+                                class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-rose-500 hover:text-rose-600 transition-colors group/btn">
+                                Read Notice <i data-lucide="arrow-right"
+                                    class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform"></i>
+                            </button>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notice Modal -->
+        <div id="notice-modal"
+            class="fixed inset-0 z-[9999] hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+            onclick="closeNoticeModal(event)">
+            <div class="bg-white rounded-3xl max-w-lg w-full max-h-[80vh] overflow-hidden shadow-2xl transform scale-95 opacity-0 transition-all duration-300"
+                id="notice-modal-content" onclick="event.stopPropagation()">
+                <!-- Modal Header -->
+                <div class="bg-gradient-to-r from-rose-500 to-red-400 p-6 text-white">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p id="modal-date" class="text-xs font-semibold uppercase tracking-wider opacity-80 mb-1">
+                            </p>
+                            <h3 id="modal-title" class="font-playfair font-bold text-2xl md:text-3xl"></h3>
+                        </div>
+                        <button onclick="closeNoticeModal()"
+                            class="p-2 rounded-full hover:bg-white/20 transition-colors">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Modal Body -->
+                <div class="p-6 overflow-y-auto max-h-[50vh]">
+                    <p id="modal-body" class="font-poppins text-slate-600 leading-relaxed whitespace-pre-line"></p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function openNoticeModal(title, date, body) {
+                const modal = document.getElementById('notice-modal');
+                const content = document.getElementById('notice-modal-content');
+                document.getElementById('modal-title').textContent = title;
+                document.getElementById('modal-date').textContent = date;
+                document.getElementById('modal-body').textContent = body;
+
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+                lucide.createIcons();
+            }
+
+            function closeNoticeModal(event) {
+                if (event && event.target !== document.getElementById('notice-modal')) return;
+                const modal = document.getElementById('notice-modal');
+                const content = document.getElementById('notice-modal-content');
+
+                content.classList.remove('scale-100', 'opacity-100');
+                content.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 300);
+                document.body.style.overflow = '';
+            }
+
+            // Load Text Notices from Firestore
+            async function loadTextNotices() {
+                const container = document.getElementById('text-notices-container');
+                if (!container) return;
+
+                try {
+                    const snapshot = await db.collection('notices').orderBy('createdAt', 'desc').limit(3).get();
+
+                    if (snapshot.empty) {
+                        // Keep placeholder notices if none in DB
+                        return;
+                    }
+
+                    container.innerHTML = '';
+                    snapshot.forEach(doc => {
+                        const data = doc.data();
+                        const card = document.createElement('article');
+                        card.className = 'notice-card bg-white rounded-2xl p-5 md:p-6 shadow-lg shadow-rose-50 border border-rose-50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-100/50 hover:-translate-y-1 group/card';
+
+                        // Escape quotes for onclick
+                        const escapedBody = data.body ? data.body.replace(/'/g, "\\'").replace(/\n/g, "\\n") : '';
+                        const escapedTitle = data.title ? data.title.replace(/'/g, "\\'") : '';
+
+                        card.innerHTML = `
+                            <time class="text-[11px] font-poppins font-semibold text-rose-400 uppercase tracking-wider">${data.date || ''}</time>
+                            <h4 class="font-nunito font-bold text-lg md:text-xl text-navy mt-2 group-hover/card:text-rose-500 transition-colors">${data.title || ''}</h4>
+                            <p class="font-poppins text-sm text-slate-500 mt-2 leading-relaxed line-clamp-2">${data.shortDescription || ''}</p>
+                            <button onclick="openNoticeModal('${escapedTitle}', '${data.date || ''}', '${escapedBody}')" 
+                                class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-rose-500 hover:text-rose-600 transition-colors group/btn">
+                                Read Notice <i data-lucide="arrow-right" class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform"></i>
+                            </button>
+                        `;
+                        container.appendChild(card);
+                    });
+                    lucide.createIcons();
+
+                } catch (error) {
+                    console.error('Error loading notices:', error);
+                    // Keep existing placeholder notices on error
+                }
+            }
+
+            // Initialize on page load
+            document.addEventListener('DOMContentLoaded', () => {
+                if (typeof db !== 'undefined') {
+                    loadTextNotices();
+                }
+            });
+        </script>
 
         <!-- Academics Section -->
         <section id="academics" class="relative py-32 bg-[#F0F7FF] px-6">
@@ -1653,7 +1894,7 @@
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         </script>
         <!-- Admission Floating Button -->
-        <div class="session-text">2026-27 Session Starts Now</div>
+        <div class="session-text">New Session Starts Now</div>
         <a href="inquiry/admission.html" class="admission-float">
             <span>Get Admission Now</span>
         </a>
@@ -1761,6 +2002,79 @@
                     contactBtnText.classList.remove('hidden');
                     contactBtnLoading.classList.add('hidden');
                 }
+            });
+        </script>
+
+        <script>
+            // --- Notice Board Logic ---
+            // --- Notice Board Logic ---
+            document.addEventListener('DOMContentLoaded', async () => {
+                const noticeWrapper = document.getElementById('notice-wrapper');
+
+                // Helper to create slide
+                function createSlide(url, caption) {
+                    const slide = document.createElement('div');
+                    slide.className = 'swiper-slide bg-white rounded-[2.5rem] overflow-hidden relative';
+                    slide.innerHTML = `
+                        <div class="w-full h-full flex items-center justify-center bg-gray-50">
+                            <img src="${url}" class="max-w-full max-h-full object-contain shadow-md rounded-xl" alt="Notice">
+                        </div>
+                        ${caption ? `
+                        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
+                            <p class="font-bold text-center">${caption}</p>
+                        </div>` : ''}
+                    `;
+                    noticeWrapper.appendChild(slide);
+                }
+
+                // Initialize Swiper
+                function initSwiper() {
+                    new Swiper(".noticeSwiper", {
+                        effect: "coverflow",
+                        grabCursor: true,
+                        centeredSlides: true,
+                        slidesPerView: "auto",
+                        coverflowEffect: {
+                            rotate: 50,
+                            stretch: 0,
+                            depth: 100,
+                            modifier: 1,
+                            slideShadows: true,
+                        },
+                        pagination: {
+                            el: ".swiper-pagination",
+                        },
+                        navigation: {
+                            nextEl: ".swiper-button-next",
+                            prevEl: ".swiper-button-prev",
+                        },
+                        autoplay: {
+                            delay: 5000,
+                            disableOnInteraction: false,
+                        },
+                    });
+                }
+
+                if (typeof db !== 'undefined') {
+                    try {
+                        const snapshot = await db.collection('gallery')
+                            .where('category', '==', 'notices')
+                            .orderBy('uploadedAt', 'desc')
+                            .get();
+
+                        if (!snapshot.empty) {
+                            snapshot.forEach(doc => {
+                                const data = doc.data();
+                                createSlide(data.url, data.caption);
+                            });
+                        }
+                    } catch (error) {
+                        console.error("Error fetching notices:", error);
+                    }
+                }
+
+                // Always init swiper (for the hardcoded slide + any dynamic ones)
+                initSwiper();
             });
         </script>
 </body>

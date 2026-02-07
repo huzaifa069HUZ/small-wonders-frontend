@@ -68,6 +68,56 @@
             <p id="status-msg" class="mt-4 text-center text-sm font-medium"></p>
         </div>
 
+        <!-- Text Notice Upload Section -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm mb-8 border-l-4 border-rose-500">
+            <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+                <i data-lucide="megaphone" class="w-5 h-5 text-rose-500"></i> Add Text Notice
+            </h2>
+
+            <form id="notice-form" class="space-y-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Notice Title *</label>
+                        <input type="text" id="notice-title" placeholder="e.g. Holiday Notice" required
+                            class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-rose-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                        <input type="date" id="notice-date"
+                            class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-rose-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Short Description *</label>
+                    <input type="text" id="notice-short" placeholder="Brief summary (shown on cards)" required
+                        maxlength="150" class="w-full p-2 border rounded-lg">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Notice Text *</label>
+                    <textarea id="notice-body" rows="5" placeholder="Complete notice content (shown in modal)" required
+                        class="w-full p-2 border rounded-lg resize-none"></textarea>
+                </div>
+
+                <button type="submit" id="notice-btn"
+                    class="bg-rose-500 text-white px-6 py-2 rounded-lg hover:bg-rose-600 w-full md:w-auto font-semibold flex items-center justify-center gap-2">
+                    <span id="notice-btn-text">Publish Notice</span>
+                    <span id="notice-btn-loader"
+                        class="hidden animate-spin h-4 w-4 border-2 border-white rounded-full border-t-transparent"></span>
+                </button>
+            </form>
+            <p id="notice-status-msg" class="mt-4 text-center text-sm font-medium"></p>
+        </div>
+
+        <!-- Current Notices List -->
+        <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+            <i data-lucide="scroll-text" class="w-5 h-5 text-rose-500"></i> Current Notices
+        </h2>
+        <div id="notices-list" class="space-y-3 mb-8">
+            <div class="animate-pulse bg-gray-200 h-16 rounded-xl"></div>
+        </div>
+
         <!-- Gallery Management -->
         <h2 class="text-xl font-bold mb-4">Current Gallery Images</h2>
         <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -204,6 +254,113 @@
                 alert('Delete failed: ' + error.message);
             }
         };
+
+        // ====== TEXT NOTICES MANAGEMENT ======
+        const noticeForm = document.getElementById('notice-form');
+        const noticeBtn = document.getElementById('notice-btn');
+        const noticeStatusMsg = document.getElementById('notice-status-msg');
+        const noticesList = document.getElementById('notices-list');
+
+        // 6. Notice Form Submission
+        noticeForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById('notice-title').value.trim();
+            const dateVal = document.getElementById('notice-date').value;
+            const shortDesc = document.getElementById('notice-short').value.trim();
+            const body = document.getElementById('notice-body').value.trim();
+
+            if (!title || !shortDesc || !body) return;
+
+            // UI Loading State
+            noticeBtn.disabled = true;
+            document.getElementById('notice-btn-text').innerText = 'Publishing...';
+            document.getElementById('notice-btn-loader').classList.remove('hidden');
+            noticeStatusMsg.innerText = '';
+
+            try {
+                // Format date
+                const formattedDate = dateVal ? new Date(dateVal).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+                // Save to Firestore
+                await db.collection('notices').add({
+                    title: title,
+                    date: formattedDate,
+                    shortDescription: shortDesc,
+                    body: body,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                noticeStatusMsg.innerText = '✅ Notice published successfully!';
+                noticeStatusMsg.className = 'text-green-600 text-center mt-4';
+                noticeForm.reset();
+                loadNotices();
+
+            } catch (error) {
+                console.error('Notice upload error:', error);
+                noticeStatusMsg.innerText = '❌ Error: ' + error.message;
+                noticeStatusMsg.className = 'text-red-600 text-center mt-4';
+            } finally {
+                noticeBtn.disabled = false;
+                document.getElementById('notice-btn-text').innerText = 'Publish Notice';
+                document.getElementById('notice-btn-loader').classList.add('hidden');
+            }
+        });
+
+        // 7. Load Notices
+        async function loadNotices() {
+            noticesList.innerHTML = '<div class="animate-pulse bg-gray-200 h-16 rounded-xl"></div>';
+
+            try {
+                const snapshot = await db.collection('notices').orderBy('createdAt', 'desc').get();
+
+                if (snapshot.empty) {
+                    noticesList.innerHTML = '<p class="text-gray-500 text-center">No notices yet.</p>';
+                    return;
+                }
+
+                noticesList.innerHTML = '';
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const card = document.createElement('div');
+                    card.className = 'bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center';
+                    card.innerHTML = `
+                        <div>
+                            <p class="text-xs text-rose-400 font-semibold uppercase">${data.date}</p>
+                            <h4 class="font-bold text-gray-800">${data.title}</h4>
+                            <p class="text-sm text-gray-500 truncate max-w-md">${data.shortDescription}</p>
+                        </div>
+                        <button onclick="deleteNotice('${doc.id}')" class="bg-red-100 text-red-500 px-3 py-2 rounded-lg hover:bg-red-200 flex items-center gap-1 text-sm">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i> Delete
+                        </button>
+                    `;
+                    noticesList.appendChild(card);
+                });
+                lucide.createIcons();
+
+            } catch (error) {
+                console.error('Error loading notices:', error);
+                noticesList.innerHTML = '<p class="text-red-500">Failed to load notices.</p>';
+            }
+        }
+
+        // 8. Delete Notice
+        window.deleteNotice = async (docId) => {
+            if (!confirm('Delete this notice?')) return;
+            try {
+                await db.collection('notices').doc(docId).delete();
+                loadNotices();
+            } catch (error) {
+                alert('Delete failed: ' + error.message);
+            }
+        };
+
+        // Load notices on page load (after auth)
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                loadNotices();
+            }
+        });
     </script>
 </body>
 
